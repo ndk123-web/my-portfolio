@@ -1,19 +1,14 @@
-import './App.css';
-import { Child } from './Components/child';
-import { Parent } from './Components/Parent.jsx';
+import { useTheme } from './context/themeContext.jsx'
+import Header from "./Components/layout/Header.jsx"
 
 function App() {
+  const { colors } = useTheme()
 
   return (
-    <>
-    
-      <h1>Hello From Frontend</h1>
-
-      <Parent name="Parent Component">
-        <Child /> {/* Child Component goes to Parent as a children prop */}
-      </Parent>
-
-    </>
+    <div style={{ backgroundColor: colors.background  }} className="min-h-screen w-full">
+      <Header />
+      {/* Other sections will go here */}
+    </div>
   )
 }
 
