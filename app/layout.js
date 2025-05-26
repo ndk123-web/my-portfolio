@@ -1,14 +1,14 @@
-'use client';
-
-import { ThemeProvider } from "@/context/ThemeContext";
-import Header from "./Header/page";
+"use client";
+import "./globals.css";
+import { ThemeProvider } from "@/context/ThemeContext.js";
+import SnowBackground from "@/components/SnowBackgound";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
         <ThemeProvider>
-          <Header />
+          <SnowBackground />
           {children}
         </ThemeProvider>
       </body>
