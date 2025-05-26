@@ -1,27 +1,20 @@
 @import "tailwindcss";
 
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Base styles for preventing layout shifts */
+html, body {
+  overflow-x: hidden;
+  min-width: 320px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Prevent content jumping when scrollbar appears/disappears */
+@media screen and (min-width: 960px) {
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
   }
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
