@@ -8,13 +8,13 @@ const SnowBackground = ({ theme }) => {
     // Generate snowflakes
     const generateSnowflakes = () => {
       const flakes = [];
-      const numberOfFlakes = 50; // Adjust number of snowflakes
+      const numberOfFlakes = 25; // Adjust number of snowflakes
 
       for (let i = 0; i < numberOfFlakes; i++) {
         flakes.push({
           id: i,
           x: Math.random() * 100, // Random horizontal position (%)
-          size: Math.random() * 4 + 2, // Random size between 2-6px
+          size: Math.random() * 2 + 1, // Random size between 2-6px
           animationDuration: Math.random() * 3 + 2, // Random duration between 2-5s
           opacity: Math.random() * 0.6 + 0.4, // Random opacity between 0.4-1
           delay: Math.random() * 5, // Random delay up to 5s
@@ -27,7 +27,7 @@ const SnowBackground = ({ theme }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-11 overflow-hidden">
       {snowflakes.map((flake) => (
         <motion.div
           key={flake.id}
