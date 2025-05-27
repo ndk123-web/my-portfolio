@@ -22,6 +22,7 @@ const Header = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
       className={`fixed w-full z-50 backdrop-blur-md ${
         theme === "dark"
           ? "bg-gray-900/95 text-white border-gray-700"
@@ -70,7 +71,11 @@ const Header = () => {
             >
               <div className="w-6 h-5 flex flex-col justify-between">
                 <motion.span
-                  animate={isOpen ? { rotate: 45, y: 8, x: 0 } : { rotate: 0, y: 0, x: 0 }}
+                  animate={
+                    isOpen
+                      ? { rotate: 45, y: 8, x: 0 }
+                      : { rotate: 0, y: 0, x: 0 }
+                  }
                   className="w-full h-0.5 bg-current rounded-full origin-center"
                   transition={{ duration: 0.2 }}
                 />
@@ -80,7 +85,11 @@ const Header = () => {
                   transition={{ duration: 0.2 }}
                 />
                 <motion.span
-                  animate={isOpen ? { rotate: -45, y: -8, x: 0 } : { rotate: 0, y: 0, x: 0 }}
+                  animate={
+                    isOpen
+                      ? { rotate: -45, y: -8, x: 0 }
+                      : { rotate: 0, y: 0, x: 0 }
+                  }
                   className="w-full h-0.5 bg-current rounded-full origin-center"
                   transition={{ duration: 0.2 }}
                 />
@@ -97,7 +106,9 @@ const Header = () => {
                     className={`text-lg transition-colors duration-200 ${
                       pathname === item.path
                         ? "text-blue-600 font-semibold"
-                        : "text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                        : theme === "light"
+                        ? "text-gray-900 group-hover:text-blue-600" // Light theme text
+                        : "text-gray-300 group-hover:text-blue-400" // Dark theme text
                     }`}
                   >
                     {item.name}
@@ -115,7 +126,11 @@ const Header = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+              className={`p-2 rounded-full ${
+                theme === "light"
+                  ? "text-gray-900 hover:bg-gray-200"
+                  : "text-gray-300 hover:bg-gray-700"
+              }`}
             >
               {theme === "light" ? "🌙" : "☀️"}
             </motion.button>
@@ -170,7 +185,9 @@ const Header = () => {
               ${
                 pathname === item.path
                   ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 font-semibold"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                  : theme === "light"
+                  ? "text-gray-900 hover:bg-gray-50"
+                  : "text-gray-300 hover:bg-gray-800/50"
               }
             `}
                 >
