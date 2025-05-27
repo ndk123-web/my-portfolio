@@ -103,7 +103,7 @@ const skillCategories = [
   },
 ];
 
-export default function Home() {
+export default function Home( { skillRef } ) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -329,6 +329,7 @@ export default function Home() {
 
       {/* Skills Section */}
       <section
+	  ref={skillRef}
         className={`container mx-auto px-6 py-16 border-t ${
           theme === "dark" ? "border-gray-700" : "border-gray-200"
         }`}
@@ -336,7 +337,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          //   viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -364,7 +365,6 @@ export default function Home() {
               key={categoryData.category}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
               className="space-y-6"
             >
@@ -400,7 +400,6 @@ export default function Home() {
                         key={skill.name}
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
                         transition={{
                           delay: categoryIndex * 0.1 + skillIndex * 0.05,
                           duration: 0.4,
@@ -459,7 +458,6 @@ export default function Home() {
                           key={skill.name}
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
                           transition={{
                             delay: categoryIndex * 0.1 + skillIndex * 0.05,
                             duration: 0.4,
