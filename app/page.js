@@ -9,11 +9,12 @@ import { useRef } from "react";
 export default function Main() {
   
   const skillRef = useRef(null);
+  const homeRef = useRef(null);
 
   return (
     <>
-      <Header skillRef={skillRef}  />
-      <Home   skillRef ={skillRef} />
+      <Header skillRef={skillRef} homeRef={homeRef} />
+      <Home skillRef={skillRef} homeRef={homeRef} />
     </>
   );
 }

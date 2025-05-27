@@ -1,19 +1,122 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const Header = ( { skillRef } ) => {
+const Header = ({ skillRef, homeRef }) => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("Home");
   const pathname = usePathname();
 
+  // Function to handle smooth scrolling to home section
+  const handleHomeClick = (e) => {
+    e.preventDefault();
+    if (homeRef && homeRef.current) {
+      homeRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    setActiveSection("Home");
+    setIsOpen(false);
+  };
+
+  // Function to handle smooth scrolling to skills section
+  const handleSkillsClick = (e) => {
+    e.preventDefault();
+    if (skillRef && skillRef.current) {
+      skillRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    setActiveSection("Skills"); // Fixed: removed extra spaces
+    setIsOpen(false);
+  };
+
+  // Intersection Observer to track active section
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -20% 0px", // Better threshold for section detection
+      threshold: 0.1,
+    };
+
+    const observerCallback = (entries) => {
+      // Sort entries by intersection ratio to prioritize the most visible section
+      const sortedEntries = entries.sort(
+        (a, b) => b.intersectionRatio - a.intersectionRatio
+      );
+
+      sortedEntries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === homeRef?.current) {
+            setActiveSection("Home");
+          } else if (entry.target === skillRef?.current) {
+            setActiveSection("Skills");
+          }
+        }
+      });
+
+      // Fallback: if no sections are intersecting, check scroll position
+      if (!entries.some((entry) => entry.isIntersecting)) {
+        const scrollTop = window.scrollY;
+        const homeTop = homeRef?.current?.offsetTop || 0;
+        const skillsTop = skillRef?.current?.offsetTop || 0;
+
+        if (scrollTop < skillsTop - 100) {
+          setActiveSection("Home");
+        } else {
+          setActiveSection("Skills");
+        }
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    // Observe sections
+    if (homeRef?.current) observer.observe(homeRef.current);
+    if (skillRef?.current) observer.observe(skillRef.current);
+
+    // Add scroll listener as fallback
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const homeTop = homeRef?.current?.offsetTop || 0;
+      const skillsTop = skillRef?.current?.offsetTop || 0;
+
+      // Add some buffer to prevent flickering
+      if (scrollTop < skillsTop - 100) {
+        setActiveSection("Home");
+      } else {
+        setActiveSection("Skills");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      if (homeRef?.current) observer.unobserve(homeRef.current);
+      if (skillRef?.current) observer.unobserve(skillRef.current);
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [homeRef, skillRef]);
+
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Skills", path: "/Skills" },
+    { name: "Home", path: "/", isScroll: true, onClick: handleHomeClick },
+    {
+      name: "Skills",
+      path: "/Skills",
+      isScroll: true,
+      onClick: handleSkillsClick,
+    },
     { name: "Projects", path: "/Projects" },
     { name: "Contact", path: "/Contacts" },
   ];
@@ -32,14 +135,14 @@ const Header = ( { skillRef } ) => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/">
+          <button onClick={handleHomeClick} className="focus:outline-none">
             <motion.h1
               whileHover={{ scale: 1.05 }}
               className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent"
             >
               Navnath
             </motion.h1>
-          </Link>
+          </button>
 
           {/* Mobile Controls */}
           <div className="md:hidden flex items-center space-x-3">
@@ -99,29 +202,68 @@ const Header = ( { skillRef } ) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <motion.div className="relative group">
-                  <span
-                    className={`text-lg transition-colors duration-200 ${
-                      pathname === item.path
-                        ? "text-blue-600 font-semibold"
-                        : theme === "light"
-                        ? "text-gray-900 group-hover:text-blue-600" // Light theme text
-                        : "text-gray-300 group-hover:text-blue-400" // Dark theme text
-                    }`}
+            {navItems.map((item) => {
+              // Handle scroll items (Home and Skills)
+              if (item.isScroll) {
+                const isActive = activeSection === item.name;
+                return (
+                  <button
+                    key={item.name}
+                    onClick={item.onClick}
+                    className="focus:outline-none"
                   >
-                    {item.name}
-                  </span>
-                  <motion.div
-                    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"
-                    initial={{ width: pathname === item.path ? "100%" : "0%" }}
-                    animate={{ width: pathname === item.path ? "100%" : "0%" }}
-                    whileHover={{ width: "100%" }}
-                  />
-                </motion.div>
-              </Link>
-            ))}
+                    <motion.div className="relative group">
+                      <span
+                        className={`text-lg transition-colors duration-200 ${
+                          isActive
+                            ? "text-blue-600 font-bold"
+                            : theme === "light"
+                            ? "text-gray-900 group-hover:text-blue-600"
+                            : "text-gray-300 group-hover:text-blue-400"
+                        }`}
+                      >
+                        {item.name}
+                      </span>
+                      <motion.div
+                        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"
+                        initial={{ width: isActive ? "100%" : "0%" }}
+                        animate={{ width: isActive ? "100%" : "0%" }}
+                        whileHover={{ width: "100%" }}
+                      />
+                    </motion.div>
+                  </button>
+                );
+              }
+
+              // Handle regular navigation items
+              return (
+                <Link key={item.path} href={item.path}>
+                  <motion.div className="relative group">
+                    <span
+                      className={`text-lg transition-colors duration-200 ${
+                        pathname === item.path
+                          ? "text-blue-600 font-semibold"
+                          : theme === "light"
+                          ? "text-gray-900 group-hover:text-blue-600"
+                          : "text-gray-300 group-hover:text-blue-400"
+                      }`}
+                    >
+                      {item.name}
+                    </span>
+                    <motion.div
+                      className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"
+                      initial={{
+                        width: pathname === item.path ? "100%" : "0%",
+                      }}
+                      animate={{
+                        width: pathname === item.path ? "100%" : "0%",
+                      }}
+                      whileHover={{ width: "100%" }}
+                    />
+                  </motion.div>
+                </Link>
+              );
+            })}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -138,7 +280,7 @@ const Header = ( { skillRef } ) => {
         </div>
       </div>
 
-      {/* Mobile Menu - Fixed version */}
+      {/* Mobile Menu */}
       <div
         className={`
     fixed 
@@ -160,39 +302,53 @@ const Header = ( { skillRef } ) => {
           <nav className="py-4 space-y-2">
             {navItems.map((item, i) => (
               <div
-                key={item.path}
-                className={`
-            transform 
-            transition-all 
-            duration-300
-            ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"}
-          `}
+                key={item.name}
+                className={`transform transition-all duration-300 ${
+                  isOpen
+                    ? "translate-y-0 opacity-100"
+                    : "-translate-y-4 opacity-0"
+                }`}
                 style={{
                   transitionDelay: `${i * 75}ms`,
                 }}
               >
-                <Link
-                  href={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`
-              block 
-              w-full 
-              px-4 
-              py-3 
-              rounded-xl 
-              transition-colors 
-              duration-200
-              ${
-                pathname === item.path
-                  ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 font-semibold"
-                  : theme === "light"
-                  ? "text-gray-900 hover:bg-gray-50"
-                  : "text-gray-300 hover:bg-gray-800/50"
-              }
-            `}
-                >
-                  {item.name}
-                </Link>
+                {item.isScroll ? (
+                  <button
+                    onClick={item.onClick}
+                    className={`block w-full px-4 py-3 rounded-xl transition-colors duration-200 text-left ${
+                      activeSection === item.name
+                        ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 font-semibold"
+                        : theme === "light"
+                        ? "text-gray-900 hover:bg-gray-50"
+                        : "text-gray-300 hover:bg-gray-800/50"
+                    }`}
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    href={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`
+                block 
+                w-full 
+                px-4 
+                py-3 
+                rounded-xl 
+                transition-colors 
+                duration-200
+                ${
+                  pathname === item.path
+                    ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 font-semibold"
+                    : theme === "light"
+                    ? "text-gray-900 hover:bg-gray-50"
+                    : "text-gray-300 hover:bg-gray-800/50"
+                }
+              `}
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </div>
             ))}
           </nav>

@@ -103,7 +103,7 @@ const skillCategories = [
   },
 ];
 
-export default function Home( { skillRef } ) {
+export default function Home({ skillRef, homeRef }) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -113,7 +113,11 @@ export default function Home( { skillRef } ) {
       }`}
     >
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-16 lg:py-24">
+	  {/* Just small padding */}
+
+	  <div ref={homeRef} className="h-20"></div>
+
+      <section  className="container mx-auto px-6 py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Text Content */}
           <motion.div
@@ -328,8 +332,12 @@ export default function Home( { skillRef } ) {
       </section>
 
       {/* Skills Section */}
+
+		{/* Just small padding */}
+	  <div ref={skillRef} className="h-16"></div>
+
       <section
-	  ref={skillRef}
+        
         className={`container mx-auto px-6 py-16 border-t ${
           theme === "dark" ? "border-gray-700" : "border-gray-200"
         }`}
