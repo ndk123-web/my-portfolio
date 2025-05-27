@@ -126,14 +126,14 @@ const Header = ({ skillRef, homeRef }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed w-full z-50 backdrop-blur-md ${
+      className={`fixed w-full z-50 backdrop-blur-lg ${ // md means medium , options = md->med , lg->large , xl->extra large
         theme === "dark"
-          ? "bg-gray-900/95 text-white border-gray-700"
-          : "bg-white/95 text-gray-900 border-gray-200"
+          ? "bg-gray-900/90 text-white border-gray-700"
+          : "bg-white/90 text-gray-900 border-gray-200"
       } shadow-lg border-b`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-7">
           {/* Logo */}
           <button onClick={handleHomeClick} className="focus:outline-none">
             <motion.h1
