@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const Header = ({ skillRef, homeRef }) => {
+const Header = ({ skillRef, homeRef, projectsRef }) => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
@@ -38,76 +38,105 @@ const Header = ({ skillRef, homeRef }) => {
     setIsOpen(false);
   };
 
-  // Intersection Observer to track active section
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -20% 0px", // Better threshold for section detection
-      threshold: 0.1,
-    };
-
-    const observerCallback = (entries) => {
-      // Sort entries by intersection ratio to prioritize the most visible section
-      const sortedEntries = entries.sort(
-        (a, b) => b.intersectionRatio - a.intersectionRatio
-      );
-
-      sortedEntries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (entry.target === homeRef?.current) {
-            setActiveSection("Home");
-          } else if (entry.target === skillRef?.current) {
-            setActiveSection("Skills");
-          }
-        }
+  const handleProjectsClick = (e) => {
+    e.preventDefault();
+    if (projectsRef && projectsRef.current) {
+      projectsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
+    }
+    setActiveSection("Projects");
+    setIsOpen(false);
+  };
 
-      // Fallback: if no sections are intersecting, check scroll position
-      if (!entries.some((entry) => entry.isIntersecting)) {
-        const scrollTop = window.scrollY;
-        const homeTop = homeRef?.current?.offsetTop || 0;
-        const skillsTop = skillRef?.current?.offsetTop || 0;
+  // Intersection Observer to track active section
+  // Update the useEffect hook with proper scroll handling
+  // useEffect(() => {
+  //   const observerOptions = {
+  //     root: null,
+  //     rootMargin: "-20% 0px -20% 0px",
+  //     threshold: [0.1, 0.5, 0.9], // Multiple thresholds for better detection
+  //   };
 
-        if (scrollTop < skillsTop - 100) {
-          setActiveSection("Home");
-        } else {
-          setActiveSection("Skills");
-        }
-      }
-    };
+  //   const observerCallback = (entries) => {
+  //     // Get the most visible section
+  //     const mostVisible = entries.reduce((prev, current) => {
+  //       return (prev?.intersectionRatio || 0) > current.intersectionRatio
+  //         ? prev
+  //         : current;
+  //     }, null);
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
-    );
+  //     if (mostVisible?.isIntersecting) {
+  //       if (mostVisible.target === homeRef?.current) {
+  //         setActiveSection("Home");
+  //       } else if (mostVisible.target === skillRef?.current) {
+  //         setActiveSection("Skills");
+  //       } else if (mostVisible.target === projectsRef?.current) {
+  //         setActiveSection("Projects");
+  //       }
+  //     }
+  //   };
 
-    // Observe sections
-    if (homeRef?.current) observer.observe(homeRef.current);
-    if (skillRef?.current) observer.observe(skillRef.current);
+  //   const observer = new IntersectionObserver(
+  //     observerCallback,
+  //     observerOptions
+  //   );
 
-    // Add scroll listener as fallback
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const homeTop = homeRef?.current?.offsetTop || 0;
-      const skillsTop = skillRef?.current?.offsetTop || 0;
+  //   // Observe all sections
+  //   const sections = [
+  //     { ref: homeRef, name: "Home" },
+  //     { ref: skillRef, name: "Skills" },
+  //     { ref: projectsRef, name: "Projects" },
+  //   ];
 
-      // Add some buffer to prevent flickering
-      if (scrollTop < skillsTop - 100) {
-        setActiveSection("Home");
-      } else {
-        setActiveSection("Skills");
-      }
-    };
+  //   sections.forEach(({ ref }) => {
+  //     if (ref?.current) {
+  //       observer.observe(ref.current);
+  //     }
+  //   });
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+  //   // Improved scroll handler with debounce
+  //   let scrollTimeout;
+  //   const handleScroll = () => {
+  //     if (scrollTimeout) {
+  //       window.cancelAnimationFrame(scrollTimeout);
+  //     }
 
-    return () => {
-      if (homeRef?.current) observer.unobserve(homeRef.current);
-      if (skillRef?.current) observer.unobserve(skillRef.current);
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [homeRef, skillRef]);
+  //     scrollTimeout = window.requestAnimationFrame(() => {
+  //       const scrollTop = window.scrollY + window.innerHeight / 2;
+  //       const positions = sections
+  //         .map(({ ref, name }) => ({
+  //           name,
+  //           top: ref?.current?.offsetTop || 0,
+  //         }))
+  //         .sort((a, b) => a.top - b.top);
+
+  //       for (let i = positions.length - 1; i >= 0; i--) {
+  //         if (scrollTop > positions[i].top - 100) {
+  //           setActiveSection(positions[i].name);
+  //           break;
+  //         }
+  //       }
+  //     });
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+
+  //   // Cleanup
+  //   return () => {
+  //     sections.forEach(({ ref }) => {
+  //       if (ref?.current) {
+  //         observer.unobserve(ref.current);
+  //       }
+  //     });
+  //     observer.disconnect();
+  //     window.removeEventListener("scroll", handleScroll);
+  //     if (scrollTimeout) {
+  //       window.cancelAnimationFrame(scrollTimeout);
+  //     }
+  //   };
+  // }, [homeRef, skillRef, projectsRef]); // Add projectsRef to dependencies
 
   const navItems = [
     { name: "Home", path: "/", isScroll: true, onClick: handleHomeClick },
@@ -117,7 +146,12 @@ const Header = ({ skillRef, homeRef }) => {
       isScroll: true,
       onClick: handleSkillsClick,
     },
-    { name: "Projects", path: "/Projects" },
+    {
+      name: "Projects",
+      path: "/Projects",
+      isScroll: true,
+      onClick: handleProjectsClick,
+    },
     { name: "Contact", path: "/Contacts" },
   ];
 
@@ -126,7 +160,8 @@ const Header = ({ skillRef, homeRef }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed w-full z-50 backdrop-blur-lg ${ // md means medium , options = md->med , lg->large , xl->extra large
+      className={`fixed w-full z-50 backdrop-blur-lg ${
+        // md means medium , options = md->med , lg->large , xl->extra large
         theme === "dark"
           ? "bg-gray-900/90 text-white border-gray-700"
           : "bg-white/90 text-gray-900 border-gray-200"
