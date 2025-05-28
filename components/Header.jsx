@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const Header = ({ skillRef, homeRef, projectsRef }) => {
+const Header = ({ skillRef, homeRef, projectsRef, aboutRef , contactRef }) => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
@@ -47,6 +47,30 @@ const Header = ({ skillRef, homeRef, projectsRef }) => {
       });
     }
     setActiveSection("Projects");
+    setIsOpen(false);
+  };
+
+  const handleAboutClick = (e) => {
+    e.preventDefault();
+    if (aboutRef && aboutRef.current) {
+      aboutRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    setActiveSection("About");
+    setIsOpen(false);
+  };
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    if (contactRef && contactRef.current) {
+      contactRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    setActiveSection("Contact");
     setIsOpen(false);
   };
 
@@ -141,6 +165,12 @@ const Header = ({ skillRef, homeRef, projectsRef }) => {
   const navItems = [
     { name: "Home", path: "/", isScroll: true, onClick: handleHomeClick },
     {
+      name: "About",
+      path: "/About",
+      isScroll: true,
+      onClick: handleAboutClick,
+    },
+    {
       name: "Skills",
       path: "/Skills",
       isScroll: true,
@@ -152,7 +182,12 @@ const Header = ({ skillRef, homeRef, projectsRef }) => {
       isScroll: true,
       onClick: handleProjectsClick,
     },
-    { name: "Contact", path: "/Contacts" },
+    {
+      name: "Contact",
+      path: "/Contacts",
+      isScroll: true,
+      onClick: handleContactClick,
+    },
   ];
 
   return (

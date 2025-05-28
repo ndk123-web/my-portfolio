@@ -159,7 +159,7 @@ export default function Home({ skillRef, homeRef }) {
                     : "bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 bg-clip-text text-transparent"
                 }`}
               >
-                Software Developer | Ai Enthusiast
+                Software Developer | AL & ML Learner
               </motion.h2>
             </div>
 
