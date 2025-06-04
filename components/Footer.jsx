@@ -80,12 +80,12 @@ export default function Footer({
     contact: [
       {
         icon: FaEnvelope,
-        value: "navnath@example.com",
-        href: "mailto:navnath@example.com",
+        value: "navnath.kadam@vit.edu.in",
+        href: "mailto:navnath.kadam@vit.edu.in",
       },
       {
         icon: FaPhone,
-        value: "+91 98765 43210",
+        value: "+91 91362 92975",
         href: "tel:+919876543210",
       },
     ],

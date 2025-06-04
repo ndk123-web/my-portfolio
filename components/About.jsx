@@ -56,10 +56,10 @@ const highlights = [
 ];
 
 const stats = [
-  { label: "Years of Experience", value: "1+", icon: FaGraduationCap },
+  { label: "Years of Experience", value: "0+", icon: FaGraduationCap },
   { label: "Projects Completed", value: "5+", icon: FaRocket },
-  { label: "Technologies Mastered", value: "15+", icon: FaTools },
-  { label: "Problem-Solving Focus", value: "100%", icon: FaHeart },
+  // { label: "Technologies Mastered", value: "2+", icon: FaTools },
+  // { label: "Problem-Solving Focus", value: "100%", icon: FaHeart },
 ];
 
 export default function About({ aboutRef }) {
@@ -175,7 +175,7 @@ export default function About({ aboutRef }) {
               >
                 Download Resume
               </motion.button>
-              <motion.button
+              {/* <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-8 py-3 border-2 rounded-xl font-semibold transition-all duration-300 ${
@@ -185,7 +185,7 @@ export default function About({ aboutRef }) {
                 }`}
               >
                 Let's Connect
-              </motion.button>
+              </motion.button> */}
             </motion.div>
           </motion.div>
 

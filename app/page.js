@@ -1,6 +1,6 @@
 "use client";
-
 import Image from "next/image";
+
 import Header from "../components/Header.jsx";
 import Home from "@/components/Home.jsx";
 import Projects from "@/components/Projects.jsx";
@@ -29,9 +29,9 @@ export default function Main() {
         contactRef={contactRef}
       />
 
-      <Home skillRef={skillRef} homeRef={homeRef} projectsRef={projectsRef} />
+      <Home homeRef={homeRef} />
       <About aboutRef={aboutRef} />
-      <Skill skillRef={skillRef} homeRef={homeRef} projectsRef={projectsRef} />
+      <Skill skillRef={skillRef} />
       <Projects projectsRef={projectsRef} />
       <Contact contactRef={contactRef} />
 

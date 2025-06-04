@@ -20,7 +20,7 @@ const projectsData = {
         "Online status",
       ],
       github: "https://github.com/ndk123-web/chatorbit-chat-application",
-      live: "https://chat-orbit.vercel.app",
+      // live: "https://chat-orbit.vercel.app",
       type: "Full Stack",
     },
     {
@@ -30,12 +30,12 @@ const projectsData = {
       techStack: ["React", "Firebase Auth", "Firestore", "Tailwind CSS"],
       features: [
         "Secure encryption",
-        "Password generation",
-        "Category management",
-        "Cross-device sync",
+        "Stored History",
+        // "Category management",
+        // "Cross-device sync",
       ],
       github: "https://github.com/ndk123-web/password-manager-advance",
-      live: "https://password-manager-demo.vercel.app",
+      // live: "https://password-manager-demo.vercel.app",
       type: "Full Stack",
     },
     {
@@ -46,11 +46,11 @@ const projectsData = {
       features: [
         "User authentication",
         "Resource sharing",
-        "Discussion forums",
+        // "Discussion forums",
         "Study groups",
       ],
       github: "https://github.com/ndk123-web/studychat",
-      live: "https://study-chat.herokuapp.com",
+      // live: "https://study-chat.herokuapp.com",
       type: "Full Stack",
     },
     {
@@ -61,11 +61,11 @@ const projectsData = {
       features: [
         "Cloud storage",
         "Content management",
-        "User profiles",
-        "Comment system",
+        // "User profiles",
+        // "Comment system",
       ],
       github: "https://github.com/ndk123-web/blog",
-      live: "https://tech-tales.herokuapp.com",
+      // live: "https://tech-tales.herokuapp.com",
       type: "Full Stack",
     },
     {
@@ -74,13 +74,13 @@ const projectsData = {
         "Media conversion tool with API integration for YouTube content processing.",
       techStack: ["Flask", "JavaScript", "Python", "RESTful API"],
       features: [
-        "Video conversion",
-        "Format selection",
-        "Batch processing",
+        "Music conversion",
+        // "Format selection",
+        // "Batch processing",
         "Download management",
       ],
       github: "https://github.com/ndk123-web/FLASK_YT_Downloader",
-      live: "https://yt-mp3-converter.herokuapp.com",
+      // live: "https://yt-mp3-converter.herokuapp.com",
       type: "Full Stack",
     },
   ],
@@ -99,12 +99,12 @@ const projectsData = {
       ],
       features: [
         "Market prediction",
-        "Trend analysis",
+        // "Trend analysis",
         "Data visualization",
-        "Historical data",
+        // "Historical data",
       ],
       github: "https://github.com/ndk123-web/stock_insight",
-      live: "https://stock-insight.herokuapp.com",
+      // live: "https://stock-insight.herokuapp.com",
       type: "AI/ML",
     },
   ],
@@ -224,7 +224,7 @@ export default function Projects({ projectsRef }) {
                           techStack={project.techStack}
                           features={project.features}
                           github={project.github}
-                          live={project.live}
+                          // // live={project.live}
                           video={project.video}
                           type={project.type}
                           index={projectIndex}
@@ -246,7 +246,7 @@ export default function Projects({ projectsRef }) {
                               techStack={project.techStack}
                               features={project.features}
                               github={project.github}
-                              live={project.live}
+                              // // live={project.live}
                               video={project.video}
                               type={project.type}
                               index={projectIndex}
@@ -313,4 +313,5 @@ export default function Projects({ projectsRef }) {
       </main>
     </>
   );
+
 }

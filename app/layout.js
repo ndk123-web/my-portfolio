@@ -5,7 +5,6 @@ import SnowBackground from "@/components/SnowBackgound";
 import { useContext } from "react";
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
       <body className="relative">

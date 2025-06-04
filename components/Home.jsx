@@ -159,7 +159,7 @@ export default function Home({ skillRef, homeRef }) {
                     : "bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 bg-clip-text text-transparent"
                 }`}
               >
-                Software Developer | AL & ML Learner
+                Software Developer | AI & ML Learner
               </motion.h2>
             </div>
 
@@ -176,7 +176,7 @@ export default function Home({ skillRef, homeRef }) {
               and scalable solutions.
             </motion.p>
 
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
@@ -204,7 +204,7 @@ export default function Home({ skillRef, homeRef }) {
               >
                 Let's Connect
               </motion.button>
-            </motion.div>
+            </motion.div> */}
 
             {/* Quick Stats */}
             <motion.div
@@ -235,7 +235,7 @@ export default function Home({ skillRef, homeRef }) {
                     theme === "dark" ? "text-blue-400" : "text-blue-600"
                   }`}
                 >
-                  1+
+                  0+
                 </div>
                 <div
                   className={`text-sm ${
@@ -335,4 +335,5 @@ export default function Home({ skillRef, homeRef }) {
       {/* Just small padding */}
     </main>
   );
+  
 }

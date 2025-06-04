@@ -20,22 +20,22 @@ const contactInfo = [
   {
     icon: FaEnvelope,
     title: "Email",
-    value: "navnath@example.com",
-    link: "mailto:navnath@example.com",
+    value: "navnath.kadam@vit.edu.in",
+    link: "mailto:navnath.kadam@vit.edu.in",
     color: "from-red-400 to-red-600",
   },
   {
     icon: FaPhone,
     title: "Phone",
-    value: "+91 98765 43210",
-    link: "tel:+919876543210",
+    value: "+91 91362 92975",
+    // link: "tel:+919876543210",
     color: "from-green-400 to-green-600",
   },
   {
     icon: FaMapMarkerAlt,
     title: "Location",
     value: "Mumbai, Maharashtra",
-    link: "#",
+    // link: "#",
     color: "from-blue-400 to-blue-600",
   },
 ];
@@ -449,7 +449,7 @@ export default function Contact({ contactRef }) {
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <a
-              href="mailto:navnath@example.com"
+              href="mailto:navnath.kadam@vit.edu.in"  
               className="inline-flex items-center space-x-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <FaEnvelope />
