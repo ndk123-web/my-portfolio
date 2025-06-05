@@ -261,7 +261,7 @@ export default function Projects({ projectsRef }) {
             )}
           </div>
 
-          {/* Call to Action */}
+          {/* Call to Action
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -308,7 +308,7 @@ export default function Projects({ projectsRef }) {
                 View All Projects
               </motion.button>
             </div>
-          </motion.div>
+          </motion.div> */}
         </section>
       </main>
     </>

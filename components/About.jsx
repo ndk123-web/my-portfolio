@@ -65,6 +65,22 @@ const stats = [
 export default function About({ aboutRef }) {
   const { theme } = useContext(ThemeContext);
 
+  const handleDownloadResume = () => {
+    // send the NdkResume.pdf from public folder to the client
+
+    const link = document.createElement("a");
+    link.href = "/NdkResume.pdf";
+    link.target = "_blank";   // for new tab 
+
+    // if you want to download the file forcefully 
+    // link.download("navnath-kadam-Resume.pdf"); 
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+  }
+
   return (
     <main
       className={`min-h-screen pt-20 relative z-10 ${
@@ -172,6 +188,7 @@ export default function About({ aboutRef }) {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={handleDownloadResume}
               >
                 Download Resume
               </motion.button>

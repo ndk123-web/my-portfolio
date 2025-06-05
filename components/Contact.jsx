@@ -15,6 +15,8 @@ import {
   FaComment,
   FaSpinner,
 } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+import { ApiError } from "next/dist/server/api-utils";
 
 const contactInfo = [
   {
@@ -86,13 +88,34 @@ export default function Contact({ contactRef }) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
+    console.log("Clicekd");
+    console.log(templateParams);
+    console.log("Service ID: ",process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID);
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      );
+
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setSubmitStatus(null), 5000);
-    }, 2000);
+    } catch (error) {
+      console.error("Email send failed:", error);
+      setSubmitStatus("error");
+    }
+
+    setIsSubmitting(false);
+    setTimeout(() => setSubmitStatus(null), 5000);
   };
 
   return (
@@ -373,9 +396,11 @@ export default function Contact({ contactRef }) {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={handleSubmit}
                   className={`px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed ${
                     isSubmitting ? "animate-pulse" : ""
-                  }`}
+                  }`
+                  }
                 >
                   {isSubmitting ? (
                     <>
@@ -449,7 +474,7 @@ export default function Contact({ contactRef }) {
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <a
-              href="mailto:navnath.kadam@vit.edu.in"  
+              href="mailto:navnath.kadam@vit.edu.in"
               className="inline-flex items-center space-x-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <FaEnvelope />
