@@ -95,9 +95,9 @@ export default function Contact({ contactRef }) {
       message: formData.message,
     };
 
-    console.log("Clicekd");
-    console.log(templateParams);
-    console.log("Service ID: ",process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID);
+    // console.log("Clicekd");
+    // console.log(templateParams);
+    // console.log("Service ID: ",process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID);
 
     try {
       await emailjs.send(
