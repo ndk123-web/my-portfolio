@@ -48,7 +48,7 @@ export default function Footer({
     ],
     social: [
       {
-        name: "LinkedIn",      href:"https://www.linkedin.com/in/navnath-kadam-883a57288"
+        name: "LinkedIn",      href:"https://www.linkedin.com/in/navnath-kadam-883a57288",
         icon: FaLinkedin,
         color: "text-blue-500 hover:text-blue-600",
         bgColor: "hover:bg-blue-100 dark:hover:bg-blue-900/20",
