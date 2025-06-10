@@ -46,14 +46,14 @@ const socialLinks = [
   {
     icon: FaLinkedin,
     name: "LinkedIn",
-    url: "https://linkedin.com/in/navnath-kadam",
+    url: "https://www.linkedin.com/in/navnath-kadam-883a57288",
     color: "hover:text-blue-600",
     bgColor: "hover:bg-blue-100 dark:hover:bg-blue-900/20",
   },
   {
     icon: FaGithub,
     name: "GitHub",
-    url: "https://github.com/navnath-kadam",
+    url: "https://github.com/ndk123-web",
     color: "hover:text-gray-800 dark:hover:text-gray-200",
     bgColor: "hover:bg-gray-100 dark:hover:bg-gray-800",
   },
