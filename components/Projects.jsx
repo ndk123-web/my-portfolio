@@ -9,6 +9,31 @@ import ProjectCard from "../ui/Card.jsx";
 const projectsData = {
   "Full Stack": [
     {
+      title: "ResumeAI",
+      description:
+        "AI-Powered Resume Builder that generates professional resumes using Gemini AI",
+      techStack: [
+        "React (Vite)",
+        "Tailwind CSS",
+        "Express.js",
+        "FastAPI",
+        "MongoDB Atlas",
+        "Firebase Auth",
+        "Cloudinary",
+        "Gemini API",
+      ],
+      features: [
+        "AI-powered resume content generation using Gemini API",
+        "User authentication with Firebase",
+        "Downloadable PDF export",
+        "Modular and reusable React components",
+        "Modern responsive UI with Tailwind CSS",
+      ],
+      github: "https://github.com/ndk123-web/ai-resume-maker",
+      live: "", // Deployment in progress
+      type: "Full Stack",
+    },
+    {
       title: "ChatOrbit",
       description:
         "Real-time 1-1 chat application with secure authentication and instant messaging capabilities.",
@@ -313,5 +338,4 @@ export default function Projects({ projectsRef }) {
       </main>
     </>
   );
-
 }
