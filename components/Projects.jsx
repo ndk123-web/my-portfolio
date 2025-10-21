@@ -9,6 +9,34 @@ import ProjectCard from "../ui/Card.jsx";
 const projectsData = {
   "Full Stack": [
     {
+      title: "StudySync AI",
+      description:
+        "AI-Powered learning management system that transforms YouTube videos, PDFs, and study content into personalized, interactive learning experiences.",
+      techStack: [
+        "React (Vite)",
+        "Tailwind CSS",
+        "Express.js",
+        "FastAPI",
+        "MongoDB Atlas",
+        "Firebase Auth",
+        "Cloudinary",
+        "Gemini API",
+        "Apache Kafka",
+        "Web Sockets",
+        "Pinecone DB",
+        "OCR Tesseract",
+        "YouTube Data API",
+      ],
+      features: [
+        "AI-driven content summarization and quiz generation using Gemini API",
+        "Upload and process PDF documents",
+        "Video content extraction from YouTube links",
+      ],
+      github: "https://github.com/ndk123-web/study-sync-ai",
+      live: "https://study-sync-ai.vercel.app", // Deployment in progress
+      type: "Full Stack",
+    },
+    {
       title: "ResumeAI",
       description:
         "AI-Powered Resume Builder that generates professional resumes using Gemini AI",
@@ -131,6 +159,53 @@ const projectsData = {
       github: "https://github.com/ndk123-web/stock_insight",
       // live: "https://stock-insight.herokuapp.com",
       type: "AI/ML",
+    },
+  ],
+  "NPM Packages": [
+    {
+      title: "NDK-RPC-Cluster",
+      description:
+        "Enterprise-grade RPC cluster system providing load balancing, fault tolerance, service discovery, auto-replica creation, and automatic failover.",
+      techStack: ["Node.js", "Express.js"],
+      features: [
+        "Auto replica creation based on request threshold",
+        "Configurable custom threshold for auto-scaling",
+        "HTTP/HTTPS protocol support",
+        "Flexible port configuration",
+        "Round-robin load balancing across replicas",
+        "Retry mechanisms and failover for fault tolerance",
+        "Global service discovery registry",
+        "Full RPC support with cluster-aware calls",
+      ],
+      github: "https://github.com/ndk123-web/ndk-rpc-cluster",
+      npm: "https://www.npmjs.com/package/ndk-rpc-cluster",
+      type: "NPM Package",
+    },
+    {
+      title: "NDK RPC Engine",
+      description:
+        "A lightweight, fast, and easy-to-use RPC engine for Node.js with built-in client and server support, Express integration, CORS, and comprehensive error handling.",
+      techStack: ["Node.js", "Express.js"],
+      features: [
+        "Simple setup with a few lines of code",
+        "Built-in client and server components",
+        "Type-flexible parameter support (arrays, objects, primitives)",
+        "Comprehensive error handling and validation",
+        "Express integration and CORS support",
+        "Lightweight and minimal dependencies",
+      ],
+      github: "https://github.com/ndk123-web/ndk-rpc-engine",
+      npm: "https://www.npmjs.com/package/ndk-rpc-engine",
+      type: "NPM Package",
+    },
+    {
+      title: "Dev-Preview",
+      description:
+        "A lightweight React component for previewing various file types including images, PDFs, and videos.",
+      techStack: ["Node JS", "Express JS"],
+      features: ["Live Preview For HTML Files"],
+      github: "https://github.com/ndk123-web/dev-preview",
+      type: "NPM Package",
     },
   ],
 };
