@@ -37,6 +37,33 @@ const projectsData = {
       type: "Full Stack",
     },
     {
+      title: "TaskPlexus",
+      description:
+        "A SaaS productivity platform focused on realistic daily execution. TaskPlexus generates backend-controlled AI plans for today’s work, with offline-first sync, workspace isolation, and secure subscription handling.",
+      techStack: [
+        "React (Vite)",
+        "TypeScript",
+        "Go (Clean Architecture)",
+        "MongoDB Atlas",
+        "PostgreSQL",
+        "Redis",
+        "Firebase Authentication",
+        "Gemini AI API",
+        "Razorpay Payments",
+      ],
+      features: [
+        "Workspace-based task isolation",
+        "Offline-first frontend with IndexedDB and background sync",
+        "Flowchart-based task visualization",
+        "Redis-cached plan limits and usage control",
+        "Secure payments and subscription management",
+        "Webhook-verified payment processing",
+      ],
+      github: "https://github.com/taskplexuss",
+      live: "https://taskplexus.app",
+      type: "Full Stack SaaS",
+    },
+    {
       title: "ResumeAI",
       description:
         "AI-Powered Resume Builder that generates professional resumes using Gemini AI",

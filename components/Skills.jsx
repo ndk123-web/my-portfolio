@@ -25,6 +25,7 @@ import {
   SiPostman,
   SiVite,
   SiRedis,
+  SiGo
 } from "react-icons/si";
 import { SiC } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
@@ -42,6 +43,7 @@ const skillCategories = [
       { name: "C", icon: SiC, color: "text-blue-500" },
       { name: "C++", icon: TbBrandCpp, color: "text-blue-500" },
       { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
+      { name: "Go", icon: SiGo, color: "text-blue-500" },
     ],
   },
   {
