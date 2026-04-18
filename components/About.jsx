@@ -69,7 +69,7 @@ export default function About({ aboutRef }) {
     // send the NdkResume.pdf from public folder to the client
 
     const link = document.createElement("a");
-    link.href = "/NdkResume.pdf";
+    link.href = "/NAVNATH_KADAM_RESUME.pdf";
     link.target = "_blank";   // for new tab 
 
     // if you want to download the file forcefully 
