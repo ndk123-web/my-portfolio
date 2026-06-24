@@ -4,257 +4,159 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
 import {
-  SiReact,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiJavascript,
-  SiTypescript,
-  SiPython,
-  SiFlask,
-  SiDjango,
-  SiMongodb,
-  SiPostgresql,
-  SiMysql,
-  SiPycharm,
-  SiGithub,
-  SiGit,
-  SiVercel,
-  SiRender,
-  SiRailway,
-  SiFirebase,
-  SiPostman,
-  SiVite,
-  SiRedis,
-  SiGo
+  SiReact, SiNextdotjs, SiNodedotjs, SiJavascript, SiTypescript,
+  SiPython, SiFlask, SiDjango, SiMongodb, SiPostgresql, SiMysql,
+  SiPycharm, SiGithub, SiGit, SiVercel, SiRender, SiRailway,
+  SiFirebase, SiPostman, SiVite, SiRedis, SiGo,
 } from "react-icons/si";
 import { SiC } from "react-icons/si";
-import { FaJava } from "react-icons/fa";
+import { FaJava, FaTerminal } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
 import { TbBrandCpp } from "react-icons/tb";
 
 const skillCategories = [
   {
     category: "Languages",
+    color: "from-yellow-500 to-orange-500",
     skills: [
-      { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500" },
-      { name: "TypeScript", icon: SiTypescript, color: "text-blue-500" },
-      { name: "Python", icon: SiPython, color: "text-blue-500" },
-      { name: "Java", icon: FaJava, color: "text-red-500" },
+      { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
+      { name: "TypeScript", icon: SiTypescript, color: "text-blue-400" },
+      { name: "Python", icon: SiPython, color: "text-blue-400" },
+      { name: "Go", icon: SiGo, color: "text-cyan-400" },
+      { name: "Java", icon: FaJava, color: "text-red-400" },
       { name: "C", icon: SiC, color: "text-blue-500" },
       { name: "C++", icon: TbBrandCpp, color: "text-blue-500" },
-      { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
-      { name: "Go", icon: SiGo, color: "text-blue-500" },
     ],
   },
   {
     category: "Frameworks",
+    color: "from-cyan-500 to-blue-500",
     skills: [
-      { name: "React", icon: SiReact, color: "text-cyan-500" },
-      {
-        name: "Next.js",
-        icon: SiNextdotjs,
-        color: "dark:text-white text-black",
-      },
-      { name: "Vite", icon: SiVite, color: "text-purple-500" },
-      {
-        name: "Flask",
-        icon: SiFlask,
-        color: "dark:text-gray-300 text-gray-700",
-      },
+      { name: "React", icon: SiReact, color: "text-cyan-400" },
+      { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
+      { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
+      { name: "Vite", icon: SiVite, color: "text-purple-400" },
+      { name: "Flask", icon: SiFlask, color: "text-gray-400" },
       { name: "Django", icon: SiDjango, color: "text-green-600" },
     ],
   },
   {
     category: "Databases",
+    color: "from-green-500 to-emerald-500",
     skills: [
-      { name: "PostgreSQL", icon: SiPostgresql, color: "text-blue-600" },
+      { name: "PostgreSQL", icon: SiPostgresql, color: "text-blue-500" },
       { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
-      { name: "MySQL", icon: SiMysql, color: "text-blue-500" },
-      { name: "Redis", icon: SiRedis, color: "text-red-500" },
-      { name: "Firebase", icon: SiFirebase, color: "text-yellow-500" },
+      { name: "MySQL", icon: SiMysql, color: "text-blue-400" },
+      { name: "Redis", icon: SiRedis, color: "text-red-400" },
+      { name: "Firebase", icon: SiFirebase, color: "text-yellow-400" },
     ],
   },
   {
     category: "Tools",
+    color: "from-purple-500 to-pink-500",
     skills: [
-      { name: "VS Code", icon: VscCode, color: "text-blue-500" },
-      { name: "PyCharm", icon: SiPycharm, color: "text-green-500" },
+      { name: "VS Code", icon: VscCode, color: "text-blue-400" },
+      { name: "PyCharm", icon: SiPycharm, color: "text-green-400" },
       { name: "Git", icon: SiGit, color: "text-orange-500" },
-      { name: "GitHub", icon: SiGithub, color: "dark:text-white text-black" },
+      { name: "GitHub", icon: SiGithub, color: "text-white" },
+      { name: "Postman", icon: SiPostman, color: "text-orange-400" },
     ],
   },
   {
     category: "Deployment",
+    color: "from-indigo-500 to-violet-500",
     skills: [
-      { name: "Vercel", icon: SiVercel, color: "dark:text-white text-black" },
-      { name: "Render", icon: SiRender, color: "text-green-500" },
-      { name: "Railway", icon: SiRailway, color: "text-purple-500" },
-      { name: "Firebase", icon: SiFirebase, color: "text-yellow-500" },
+      { name: "Vercel", icon: SiVercel, color: "text-white" },
+      { name: "Render", icon: SiRender, color: "text-green-400" },
+      { name: "Railway", icon: SiRailway, color: "text-purple-400" },
+      { name: "Firebase", icon: SiFirebase, color: "text-yellow-400" },
     ],
   },
   {
-    category: "Testing",
-    skills: [{ name: "Postman", icon: SiPostman, color: "text-orange-500" }],
+    category: "CLI Based Tools",
+    color: "from-teal-500 to-cyan-500",
+    skills: [
+      { name: "who-is-running", icon: SiGo, color: "text-cyan-400" },
+      { name: "Dev-Preview", icon: SiNodedotjs, color: "text-green-500" },
+    ],
   },
 ];
 
 export default function Skills({ skillRef }) {
   const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
 
   return (
     <section
       ref={skillRef}
-      className={`min-h-screen pt-20 ${
-        theme === "dark" ? "bg-gray-900" : "bg-gray-50"
+      className={`relative pt-28 pb-20 overflow-hidden ${
+        isDark ? "bg-[#0a0a0f] text-white" : "bg-[#f8fafc] text-gray-900"
       }`}
     >
-      <div
-        className={`container mx-auto px-6 py-16 ${
-          theme === "dark" ? "border-gray-800" : "border-gray-200"
-        }`}
-      >
+      <div className={`absolute inset-0 pointer-events-none ${isDark ? "bg-grid-dark" : "bg-grid-light"}`} />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600/6 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
+
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          className="text-center mb-14"
         >
-          <h3
-            className={`text-3xl lg:text-4xl font-bold mb-4 ${
-              theme === "dark"
-                ? "bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
-                : "bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent"
-            }`}
-          >
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3 gradient-text">Expertise</p>
+          <h2 className={`text-4xl lg:text-5xl font-extrabold ${isDark ? "text-white" : "text-gray-900"}`}>
             Skills & Technologies
-          </h3>
-          <p
-            className={`text-lg max-w-2xl mx-auto ${
-              theme === "dark" ? "text-gray-300" : "text-gray-600"
-            }`}
-          >
-            Comprehensive expertise across modern development technologies
-          </p>
+          </h2>
         </motion.div>
 
-        <div className="space-y-12">
-          {skillCategories.map((categoryData, categoryIndex) => (
+        {/* Categories */}
+        <div className="space-y-10">
+          {skillCategories.map((cat, catIdx) => (
             <motion.div
-              key={categoryData.category}
-              initial={{ opacity: 0, y: 30 }}
+              key={cat.category}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
-              className="space-y-6"
+              transition={{ duration: 0.5, delay: catIdx * 0.08 }}
+              viewport={{ once: true }}
             >
-              {/* Category Title */}
-              <div className="flex items-center gap-4">
-                <div
-                  className={`h-1 flex-1 rounded-full ${
-                    theme === "dark" ? "bg-gray-700" : "bg-gray-300"
-                  }`}
-                />
-                <h4
-                  className={`text-xl font-semibold px-4 ${
-                    theme === "dark" ? "text-gray-100" : "text-gray-800"
-                  }`}
-                >
-                  {categoryData.category}
-                </h4>
-                <div
-                  className={`h-1 flex-1 rounded-full ${
-                    theme === "dark" ? "bg-gray-700" : "bg-gray-300"
-                  }`}
-                />
+              {/* Category header */}
+              <div className="flex items-center gap-4 mb-4">
+                <div className={`h-px flex-1 ${isDark ? "bg-white/6" : "bg-black/6"}`} />
+                <div className="flex items-center gap-2">
+                  <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${cat.color}`} />
+                  <span className={`text-sm font-semibold ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                    {cat.category}
+                  </span>
+                </div>
+                <div className={`h-px flex-1 ${isDark ? "bg-white/6" : "bg-black/6"}`} />
               </div>
 
-              {/* Skills Grid */}
-              <div className="relative">
-                {/* Desktop View */}
-                <div className="hidden sm:grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-                  {categoryData.skills.map((skill, skillIndex) => {
-                    const IconComponent = skill.icon;
-                    return (
-                      <motion.div
-                        key={skill.name}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{
-                          delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                          duration: 0.4,
-                        }}
-                        whileHover={{
-                          scale: 1.05,
-                          y: -5,
-                          transition: { duration: 0.2 },
-                        }}
-                        className={`group relative p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
-                          theme === "dark"
-                            ? "bg-gray-800 border-gray-700 hover:border-gray-600 hover:bg-gray-700"
-                            : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-lg hover:bg-gray-50"
-                        }`}
-                      >
-                        <div className="flex flex-col items-center space-y-3">
-                          <div
-                            className={`text-3xl transition-transform duration-300 ${skill.color} group-hover:scale-110`}
-                          >
-                            {IconComponent && <IconComponent />}
-                          </div>
-                          <span
-                            className={`text-sm font-medium text-center leading-tight ${
-                              theme === "dark"
-                                ? "text-gray-200"
-                                : "text-gray-700"
-                            }`}
-                          >
-                            {skill.name}
-                          </span>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-
-                {/* Mobile View */}
-                <div className="sm:hidden">
-                  <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
-                    {categoryData.skills.map((skill, skillIndex) => {
-                      const IconComponent = skill.icon;
-                      return (
-                        <motion.div
-                          key={skill.name}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{
-                            delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                            duration: 0.4,
-                          }}
-                          className={`group relative p-4 rounded-xl border transition-all duration-300 cursor-pointer min-w-[120px] flex-shrink-0 snap-center ${
-                            theme === "dark"
-                              ? "bg-gray-800 border-gray-700 hover:bg-gray-700"
-                              : "bg-white border-gray-200 hover:bg-gray-50 hover:shadow-md"
-                          }`}
-                        >
-                          <div className="flex flex-col items-center space-y-3">
-                            <div
-                              className={`text-3xl transition-transform duration-300 ${skill.color} group-hover:scale-110`}
-                            >
-                              {IconComponent && <IconComponent />}
-                            </div>
-                            <span
-                              className={`text-sm font-medium text-center leading-tight ${
-                                theme === "dark"
-                                  ? "text-gray-200"
-                                  : "text-gray-700"
-                              }`}
-                            >
-                              {skill.name}
-                            </span>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                </div>
+              {/* Pill chips — horizontal scrollable */}
+              <div className="flex flex-wrap gap-2.5">
+                {cat.skills.map((skill, skillIdx) => {
+                  const Icon = skill.icon;
+                  return (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: catIdx * 0.05 + skillIdx * 0.04, duration: 0.3 }}
+                      viewport={{ once: true }}
+                      whileHover={{ y: -3, scale: 1.05 }}
+                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl border text-sm font-medium cursor-default transition-all duration-200 ${
+                        isDark
+                          ? "bg-white/3 border-white/8 text-gray-300 hover:bg-white/8 hover:border-white/16"
+                          : "bg-white border-black/8 text-gray-700 hover:shadow-md hover:border-black/16"
+                      }`}
+                    >
+                      <Icon className={`w-4 h-4 ${skill.color} flex-shrink-0`} />
+                      <span>{skill.name}</span>
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
           ))}

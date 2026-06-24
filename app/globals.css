@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Base styles for preventing layout shifts */
+/* ─── Base Reset ────────────────────────────────── */
 html, body {
   overflow-x: hidden;
   min-width: 320px;
   position: relative;
   margin: 0;
   padding: 0;
-  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Prevent content jumping when scrollbar appears/disappears */
 @media screen and (min-width: 960px) {
   html {
     margin-left: calc(100vw - 100%);
@@ -19,10 +22,86 @@ html, body {
   }
 }
 
+/* ─── Scrollbar ─────────────────────────────────── */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* ─── Gradient Text ─────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #6366f1, #a855f7, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glassmorphism Card ────────────────────────── */
+.glass-dark {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Grid Pattern Background ───────────────────── */
+.bg-grid-dark {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-grid-light {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Glow Effects ──────────────────────────────── */
+.glow-indigo {
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.15), 0 0 60px rgba(99, 102, 241, 0.05);
+}
+
+.glow-purple {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.15), 0 0 60px rgba(168, 85, 247, 0.05);
+}
+
+/* ─── Animated gradient border ──────────────────── */
+@keyframes gradient-border {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-border {
+  background: linear-gradient(135deg, #6366f1, #a855f7, #3b82f6, #6366f1);
+  background-size: 300% 300%;
+  animation: gradient-border 4s ease infinite;
+}
+
+/* ─── Typewriter cursor ─────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Smooth transitions ────────────────────────── */
+* {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
 }

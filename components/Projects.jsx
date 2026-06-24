@@ -1,443 +1,367 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useContext } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useContext, useState } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
-import ProjectCard from "../ui/Card.jsx";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import {
+  SiReact, SiNextdotjs, SiNodedotjs, SiJavascript, SiTypescript,
+  SiPython, SiFlask, SiDjango, SiMongodb, SiPostgresql, SiMysql,
+  SiFirebase, SiVercel, SiRender, SiRailway, SiRedis, SiTensorflow,
+  SiPytorch, SiKeras, SiOpencv, SiPandas, SiNumpy, SiJupyter,
+  SiGo, SiScikitlearn,
+} from "react-icons/si";
+import { FaProjectDiagram, FaTerminal } from "react-icons/fa";
 
-// Sample project data - Replace with your actual projects
+const techIcons = {
+  React: SiReact, "Next.js": SiNextdotjs, "Node.js": SiNodedotjs,
+  JavaScript: SiJavascript, TypeScript: SiTypescript, Python: SiPython,
+  Flask: SiFlask, Django: SiDjango, MongoDB: SiMongodb, PostgreSQL: SiPostgresql,
+  MySQL: SiMysql, Firebase: SiFirebase, Vercel: SiVercel, Render: SiRender,
+  Railway: SiRailway, Redis: SiRedis, TensorFlow: SiTensorflow, PyTorch: SiPytorch,
+  "Scikit-learn": SiScikitlearn, Keras: SiKeras, OpenCV: SiOpencv, Pandas: SiPandas,
+  NumPy: SiNumpy, Jupyter: SiJupyter, Go: SiGo, "Go (Golang)": SiGo,
+  CLI: FaTerminal, "Graph-Engine": FaProjectDiagram, "React (Vite)": SiReact,
+};
+
 const projectsData = {
   "Full Stack": [
     {
-      title: "StudySync AI",
-      description:
-        "AI-Powered learning management system that transforms YouTube videos, PDFs, and study content into personalized, interactive learning experiences.",
-      techStack: [
-        "React (Vite)",
-        "Tailwind CSS",
-        "Express.js",
-        "FastAPI",
-        "MongoDB Atlas",
-        "Firebase Auth",
-        "Cloudinary",
-        "Gemini API",
-        "Apache Kafka",
-        "Web Sockets",
-        "Pinecone DB",
-        "OCR Tesseract",
-        "YouTube Data API",
-      ],
-      features: [
-        "AI-driven content summarization and quiz generation using Gemini API",
-        "Upload and process PDF documents",
-        "Video content extraction from YouTube links",
-      ],
-      github: "https://github.com/ndk123-web/study-sync-ai",
-      live: "https://study-sync-ai.vercel.app", // Deployment in progress
-      type: "Full Stack",
+      title: "flowframe", badge: "Currently Building",
+      description: "Interactive frame-based system design visualizer for simulating request flow across system components.",
+      techStack: ["Next.js", "React", "Vercel", "Graph-Engine"],
+      features: ["Interactive canvas for architecture visual planning", "Simulates live request flow paths", "High performance node graphs"],
+      live: "https://flowframe.taskplexus.app",
     },
     {
       title: "TaskPlexus",
-      description:
-        "A SaaS productivity platform focused on realistic daily execution. TaskPlexus generates backend-controlled AI plans for today’s work, with offline-first sync, workspace isolation, and secure subscription handling.",
-      techStack: [
-        "React (Vite)",
-        "TypeScript",
-        "Go (Clean Architecture)",
-        "MongoDB Atlas",
-        "PostgreSQL",
-        "Redis",
-        "Firebase Authentication",
-        "Gemini AI API",
-        "Razorpay Payments",
-      ],
-      features: [
-        "Workspace-based task isolation",
-        "Offline-first frontend with IndexedDB and background sync",
-        "Flowchart-based task visualization",
-        "Redis-cached plan limits and usage control",
-        "Secure payments and subscription management",
-        "Webhook-verified payment processing",
-      ],
+      description: "A SaaS productivity platform with AI-generated daily plans, offline-first sync, workspace isolation, and secure subscription handling.",
+      techStack: ["React (Vite)", "TypeScript", "Go (Golang)", "MongoDB", "PostgreSQL", "Redis"],
+      features: ["Workspace-based task isolation", "Offline-first with IndexedDB", "Flowchart task visualization", "Razorpay payments"],
       github: "https://github.com/taskplexuss",
       live: "https://taskplexus.app",
-      type: "Full Stack SaaS",
-    },
-    {
-      title: "ResumeAI",
-      description:
-        "AI-Powered Resume Builder that generates professional resumes using Gemini AI",
-      techStack: [
-        "React (Vite)",
-        "Tailwind CSS",
-        "Express.js",
-        "FastAPI",
-        "MongoDB Atlas",
-        "Firebase Auth",
-        "Cloudinary",
-        "Gemini API",
-      ],
-      features: [
-        "AI-powered resume content generation using Gemini API",
-        "User authentication with Firebase",
-        "Downloadable PDF export",
-        "Modular and reusable React components",
-        "Modern responsive UI with Tailwind CSS",
-      ],
-      github: "https://github.com/ndk123-web/ai-resume-maker",
-      live: "", // Deployment in progress
-      type: "Full Stack",
     },
     {
       title: "ChatOrbit",
-      description:
-        "Real-time 1-1 chat application with secure authentication and instant messaging capabilities.",
-      techStack: ["React", "Express", "MongoDB", "Socket.io", "Firebase"],
-      features: [
-        "Real-time messaging",
-        "User authentication",
-        "Message history",
-        "Online status",
-      ],
+      description: "Real-time 1-1 chat application with secure authentication and instant messaging.",
+      techStack: ["React", "MongoDB", "Firebase"],
+      features: ["Real-time messaging", "User authentication", "Online status"],
       github: "https://github.com/ndk123-web/chatorbit-chat-application",
-      // live: "https://chat-orbit.vercel.app",
-      type: "Full Stack",
     },
     {
       title: "PasswordManager",
-      description:
-        "Secure credential management system with encrypted storage and user authentication.",
-      techStack: ["React", "Firebase Auth", "Firestore", "Tailwind CSS"],
-      features: [
-        "Secure encryption",
-        "Stored History",
-        // "Category management",
-        // "Cross-device sync",
-      ],
+      description: "Secure credential management system with encrypted storage and user authentication.",
+      techStack: ["React", "Firebase"],
+      features: ["Secure encryption", "Stored history"],
       github: "https://github.com/ndk123-web/password-manager-advance",
-      // live: "https://password-manager-demo.vercel.app",
-      type: "Full Stack",
     },
     {
       title: "StudyChat",
-      description:
-        "Educational platform facilitating student collaboration and learning resources sharing.",
-      techStack: ["Django", "HTML", "CSS", "JavaScript"],
-      features: [
-        "User authentication",
-        "Resource sharing",
-        // "Discussion forums",
-        "Study groups",
-      ],
+      description: "Educational platform facilitating student collaboration and learning resources sharing.",
+      techStack: ["Django"],
+      features: ["Resource sharing", "Study groups"],
       github: "https://github.com/ndk123-web/studychat",
-      // live: "https://study-chat.herokuapp.com",
-      type: "Full Stack",
     },
     {
       title: "TechTales",
-      description:
-        "Blog application with cloud storage integration and content management system.",
-      techStack: ["Flask", "HTML", "CSS", "JavaScript", "Dropbox Cloud"],
-      features: [
-        "Cloud storage",
-        "Content management",
-        // "User profiles",
-        // "Comment system",
-      ],
+      description: "Blog application with cloud storage integration and content management system.",
+      techStack: ["Flask", "Python"],
+      features: ["Cloud storage", "Content management"],
       github: "https://github.com/ndk123-web/blog",
-      // live: "https://tech-tales.herokuapp.com",
-      type: "Full Stack",
     },
     {
       title: "YtMp3 Downloader",
-      description:
-        "Media conversion tool with API integration for YouTube content processing.",
-      techStack: ["Flask", "JavaScript", "Python", "RESTful API"],
-      features: [
-        "Music conversion",
-        // "Format selection",
-        // "Batch processing",
-        "Download management",
-      ],
+      description: "Media conversion tool with API integration for YouTube content processing.",
+      techStack: ["Flask", "Python"],
+      features: ["Music conversion", "Download management"],
       github: "https://github.com/ndk123-web/FLASK_YT_Downloader",
-      // live: "https://yt-mp3-converter.herokuapp.com",
-      type: "Full Stack",
     },
   ],
   "AI/ML": [
     {
+      title: "StudySync AI",
+      description: "AI-Powered LMS that transforms YouTube videos, PDFs, and study content into personalized learning experiences.",
+      techStack: ["React (Vite)", "FastAPI", "MongoDB", "Gemini API"],
+      features: ["AI quiz generation via Gemini API", "PDF & YouTube processing", "Vector search with Pinecone"],
+      github: "https://github.com/ndk123-web/study-sync-ai",
+      live: "https://study-sync-ai.vercel.app",
+    },
+    {
+      title: "ResumeAI",
+      description: "AI-Powered Resume Builder that generates professional resumes using Gemini AI.",
+      techStack: ["React (Vite)", "FastAPI", "Gemini API", "Firebase"],
+      features: ["AI content generation", "Firebase auth", "PDF export"],
+      github: "https://github.com/ndk123-web/ai-resume-maker",
+    },
+    {
       title: "StockInsight",
-      description:
-        "Stock prediction tool using polynomial regression for market trend analysis.",
-      techStack: [
-        "Flask",
-        "Python",
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Polynomial Regression",
-      ],
-      features: [
-        "Market prediction",
-        // "Trend analysis",
-        "Data visualization",
-        // "Historical data",
-      ],
+      description: "Stock prediction tool using polynomial regression for market trend analysis.",
+      techStack: ["Flask", "Python", "Scikit-learn"],
+      features: ["Market prediction", "Data visualization"],
       github: "https://github.com/ndk123-web/stock_insight",
-      // live: "https://stock-insight.herokuapp.com",
-      type: "AI/ML",
     },
   ],
-  "NPM Packages": [
+  "CLI & Tools": [
+    {
+      title: "who-is-running",
+      description: "A fast CLI to inspect ports and identify running processes on your machine.",
+      techStack: ["Go (Golang)", "CLI"],
+      features: ["Identify processes by port", "Fast lightweight execution", "Inspect active services"],
+      github: "https://github.com/ndk123-web/who-is-running",
+    },
     {
       title: "NDK-RPC-Cluster",
-      description:
-        "Enterprise-grade RPC cluster system providing load balancing, fault tolerance, service discovery, auto-replica creation, and automatic failover.",
-      techStack: ["Node.js", "Express.js"],
-      features: [
-        "Auto replica creation based on request threshold",
-        "Configurable custom threshold for auto-scaling",
-        "HTTP/HTTPS protocol support",
-        "Flexible port configuration",
-        "Round-robin load balancing across replicas",
-        "Retry mechanisms and failover for fault tolerance",
-        "Global service discovery registry",
-        "Full RPC support with cluster-aware calls",
-      ],
+      description: "Enterprise-grade RPC cluster with load balancing, fault tolerance, and auto-replica creation.",
+      techStack: ["Node.js"],
+      features: ["Auto replica scaling", "Round-robin load balancing", "Global service discovery"],
       github: "https://github.com/ndk123-web/ndk-rpc-cluster",
       npm: "https://www.npmjs.com/package/ndk-rpc-cluster",
-      type: "NPM Package",
     },
     {
       title: "NDK RPC Engine",
-      description:
-        "A lightweight, fast, and easy-to-use RPC engine for Node.js with built-in client and server support, Express integration, CORS, and comprehensive error handling.",
-      techStack: ["Node.js", "Express.js"],
-      features: [
-        "Simple setup with a few lines of code",
-        "Built-in client and server components",
-        "Type-flexible parameter support (arrays, objects, primitives)",
-        "Comprehensive error handling and validation",
-        "Express integration and CORS support",
-        "Lightweight and minimal dependencies",
-      ],
+      description: "Lightweight, fast RPC engine for Node.js with built-in client/server support.",
+      techStack: ["Node.js"],
+      features: ["Simple setup", "Type-flexible parameters", "Express & CORS support"],
       github: "https://github.com/ndk123-web/ndk-rpc-engine",
       npm: "https://www.npmjs.com/package/ndk-rpc-engine",
-      type: "NPM Package",
     },
     {
       title: "Dev-Preview",
-      description:
-        "A lightweight React component for previewing various file types including images, PDFs, and videos.",
-      techStack: ["Node JS", "Express JS"],
-      features: ["Live Preview For HTML Files"],
+      description: "A lightweight npm package for live previewing HTML files during development.",
+      techStack: ["Node.js"],
+      features: ["Live preview for HTML files"],
       github: "https://github.com/ndk123-web/dev-preview",
-      type: "NPM Package",
     },
   ],
 };
 
-export default function Projects({ projectsRef }) {
-  const { theme } = useContext(ThemeContext);
+const TABS = Object.keys(projectsData);
+const TAB_COLORS = {
+  "Full Stack": "from-blue-500 to-cyan-500",
+  "AI/ML": "from-purple-500 to-pink-500",
+  "CLI & Tools": "from-teal-500 to-green-500",
+};
+
+function ProjectCard({ project, isDark, i }) {
+  const hasGithub = !!project.github;
+  const hasLive = !!project.live;
+  const hasNpm = !!project.npm;
 
   return (
-    <>
-      {/* Add custom styles for scrollbar hiding */}
-      <style jsx global>{`
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: i * 0.07, duration: 0.4 }}
+      whileHover={{ y: -6 }}
+      className={`relative flex-shrink-0 w-[300px] sm:w-[340px] h-[370px] rounded-2xl border overflow-hidden group flex flex-col ${
+        isDark
+          ? "glass-dark border-white/6 hover:border-white/14"
+          : "glass-light border-black/8 hover:shadow-xl hover:border-black/16"
+      }`}
+    >
+      {/* Top gradient line */}
+      <div className="h-[2px] flex-shrink-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500" />
 
-      <main
-        className={`min-h-screen pt-20 relative z-10 ${
-          theme === "dark"
-            ? "bg-gray-900 text-white"
-            : "bg-gray-50 text-gray-900"
-        }`}
-      >
-        {/* Projects Section */}
-        <div ref={projectsRef} className="h-20"></div>
+      <div className="p-5 flex flex-col flex-1 min-h-0 gap-3">
+        {/* Title + badge — fixed ~2 lines */}
+        <div className="flex items-start justify-between gap-2 flex-shrink-0">
+          <h3 className={`font-bold text-base leading-tight line-clamp-2 ${isDark ? "text-white" : "text-gray-900"}`}>
+            {project.title}
+          </h3>
+          {project.badge && (
+            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20 whitespace-nowrap flex-shrink-0">
+              {project.badge}
+            </span>
+          )}
+        </div>
 
-        <section className="container mx-auto px-6 py-16">
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2
-              className={`text-4xl lg:text-5xl font-bold mb-6 ${
-                theme === "dark"
-                  ? "bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
-                  : "bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent"
-              }`}
-            >
-              Featured Projects
-            </h2>
-            <p
-              className={`text-lg lg:text-xl max-w-3xl mx-auto ${
-                theme === "dark" ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              Explore my diverse portfolio of full-stack applications, AI/ML
-              solutions, and mobile apps that showcase modern development
-              practices and innovative solutions.
-            </p>
-          </motion.div>
+        {/* Description — clamped to 3 lines */}
+        <p className={`text-xs leading-relaxed line-clamp-3 flex-shrink-0 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+          {project.description}
+        </p>
 
-          {/* Projects Categories */}
-          <div className="space-y-20">
-            {Object.entries(projectsData).map(
-              ([category, projects], categoryIndex) => (
-                <motion.div
-                  key={category}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: categoryIndex * 0.2, duration: 0.6 }}
-                  className="space-y-8"
-                >
-                  {/* Category Header */}
-                  <div className="flex items-center gap-6">
-                    <div
-                      className={`h-1 flex-1 rounded-full ${
-                        theme === "dark" ? "bg-gray-700" : "bg-gray-300"
-                      }`}
-                    ></div>
-
-                    <div className="text-center">
-                      <h3
-                        className={`text-2xl lg:text-3xl font-bold ${
-                          category === "Full Stack"
-                            ? "text-blue-600 dark:text-blue-400"
-                            : category === "AI/ML"
-                            ? "text-purple-600 dark:text-purple-400"
-                            : "text-green-600 dark:text-green-400"
-                        }`}
-                      >
-                        {category} Projects
-                      </h3>
-                      <div
-                        className={`mt-2 text-sm ${
-                          theme === "dark" ? "text-gray-400" : "text-gray-500"
-                        }`}
-                      >
-                        {projects.length} Project
-                        {projects.length > 1 ? "s" : ""}
-                      </div>
-                    </div>
-
-                    <div
-                      className={`h-1 flex-1 rounded-full ${
-                        theme === "dark" ? "bg-gray-700" : "bg-gray-300"
-                      }`}
-                    ></div>
-                  </div>
-
-                  {/* Projects Grid */}
-                  <div className="relative">
-                    {/* Desktop Grid */}
-                    <div className="hidden sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                      {projects.map((project, projectIndex) => (
-                        <ProjectCard
-                          key={`${category}-${projectIndex}`}
-                          title={project.title}
-                          description={project.description}
-                          techStack={project.techStack}
-                          features={project.features}
-                          github={project.github}
-                          // // live={project.live}
-                          video={project.video}
-                          type={project.type}
-                          index={projectIndex}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Mobile Horizontal Scroll */}
-                    <div className="sm:hidden">
-                      <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
-                        {projects.map((project, projectIndex) => (
-                          <div
-                            key={`${category}-mobile-${projectIndex}`}
-                            className="min-w-[320px] max-w-[320px] flex-shrink-0 snap-center"
-                          >
-                            <ProjectCard
-                              title={project.title}
-                              description={project.description}
-                              techStack={project.techStack}
-                              features={project.features}
-                              github={project.github}
-                              // // live={project.live}
-                              video={project.video}
-                              type={project.type}
-                              index={projectIndex}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )
-            )}
-          </div>
-
-          {/* Call to Action
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className={`mt-20 text-center rounded-3xl p-12 border ${
-              theme === "dark"
-                ? "bg-gradient-to-r from-gray-800 to-gray-900 border-gray-700"
-                : "bg-gradient-to-r from-blue-50 to-indigo-50 border-gray-200 shadow-lg"
-            }`}
-          >
-            <h3
-              className={`text-2xl lg:text-3xl font-bold mb-4 ${
-                theme === "dark" ? "text-white" : "text-gray-800"
-              }`}
-            >
-              Have a Project in Mind?
-            </h3>
-            <p
-              className={`text-lg mb-8 max-w-2xl mx-auto ${
-                theme === "dark" ? "text-gray-300" : "text-gray-600"
-              }`}
-            >
-              I'm always interested in hearing about new opportunities and
-              exciting projects. Let's discuss how we can bring your ideas to
-              life!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Start a Project
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-8 py-3 border-2 rounded-xl font-semibold transition-all duration-300 ${
-                  theme === "dark"
-                    ? "border-blue-400 text-blue-400 hover:bg-gray-800"
-                    : "border-blue-600 text-blue-600 hover:bg-blue-50"
+        {/* Tech chips — fixed single row, no wrap overflow */}
+        <div className="flex flex-wrap gap-1.5 flex-shrink-0 max-h-[44px] overflow-hidden">
+          {project.techStack.slice(0, 4).map((tech) => {
+            const Icon = techIcons[tech];
+            return (
+              <span
+                key={tech}
+                className={`inline-flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-lg border ${
+                  isDark ? "bg-white/4 border-white/8 text-gray-400" : "bg-black/3 border-black/8 text-gray-500"
                 }`}
               >
-                View All Projects
-              </motion.button>
-            </div>
-          </motion.div> */}
-        </section>
-      </main>
-    </>
+                {Icon && <Icon className="w-2.5 h-2.5" />}
+                {tech}
+              </span>
+            );
+          })}
+        </div>
+
+        {/* Features — grows to fill remaining space, max 3 items */}
+        <ul className={`space-y-1.5 flex-1 min-h-0 overflow-hidden ${isDark ? "text-gray-500" : "text-gray-400"}`}>
+          {project.features.slice(0, 3).map((f) => (
+            <li key={f} className="flex items-start gap-1.5 text-xs">
+              <span className="gradient-text font-bold mt-0.5 flex-shrink-0">›</span>
+              <span className="line-clamp-1">{f}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Action buttons — always pinned at bottom */}
+        <div className="flex gap-2 pt-1 flex-shrink-0">
+          {hasGithub && (
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                isDark
+                  ? "border-white/10 text-gray-400 hover:text-white hover:bg-white/6"
+                  : "border-black/10 text-gray-500 hover:text-gray-900 hover:bg-black/5"
+              }`}
+            >
+              <FaGithub className="w-3 h-3" /> Code
+            </motion.a>
+          )}
+          {hasLive && (
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white animated-border"
+            >
+              <FaExternalLinkAlt className="w-2.5 h-2.5" /> Live
+            </motion.a>
+          )}
+          {hasNpm && (
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href={project.npm}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border text-red-400 border-red-500/20 hover:bg-red-500/8 transition-colors`}
+            >
+              npm
+            </motion.a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export default function Projects({ projectsRef }) {
+  const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
+  const [activeTab, setActiveTab] = useState(TABS[0]);
+
+  return (
+    <section
+      className={`relative pt-28 pb-20 overflow-hidden ${
+        isDark ? "bg-[#0a0a0f] text-white" : "bg-[#f8fafc] text-gray-900"
+      }`}
+    >
+      <div className={`absolute inset-0 pointer-events-none ${isDark ? "bg-grid-dark" : "bg-grid-light"}`} />
+      <div className="absolute -top-20 right-0 w-80 h-80 bg-purple-600/8 rounded-full blur-3xl pointer-events-none" />
+
+      <div ref={projectsRef} className="absolute top-0 w-full h-20" />
+
+      <div className="container mx-auto px-6 relative z-10">
+
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-10"
+        >
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3 gradient-text">Portfolio</p>
+          <h2 className={`text-4xl lg:text-5xl font-extrabold ${isDark ? "text-white" : "text-gray-900"}`}>
+            Featured Projects
+          </h2>
+        </motion.div>
+
+        {/* Tab bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-8"
+        >
+          <div className={`inline-flex p-1 rounded-2xl gap-1 ${
+            isDark ? "bg-white/4 border border-white/6" : "bg-black/4 border border-black/6"
+          }`}>
+            {TABS.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`relative px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 focus:outline-none ${
+                  activeTab === tab
+                    ? "text-white"
+                    : isDark
+                    ? "text-gray-400 hover:text-white"
+                    : "text-gray-500 hover:text-gray-900"
+                }`}
+              >
+                {activeTab === tab && (
+                  <motion.div
+                    layoutId="active-tab"
+                    className="absolute inset-0 rounded-xl animated-border"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{tab}</span>
+                <span className={`relative z-10 ml-1.5 text-xs px-1.5 py-0.5 rounded-full ${
+                  activeTab === tab
+                    ? "bg-white/20"
+                    : isDark ? "bg-white/8 text-gray-500" : "bg-black/8 text-gray-400"
+                }`}>
+                  {projectsData[tab].length}
+                </span>
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Horizontal scroll cards */}
+        <div className="relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.25 }}
+              className="flex gap-5 overflow-x-auto pb-6 scrollbar-hide snap-x snap-mandatory"
+            >
+              {projectsData[activeTab].map((project, i) => (
+                <div key={project.title} className="snap-start">
+                  <ProjectCard project={project} isDark={isDark} i={i} />
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Fade edges */}
+          <div className={`absolute right-0 top-0 bottom-6 w-16 pointer-events-none ${
+            isDark
+              ? "bg-gradient-to-l from-[#0a0a0f] to-transparent"
+              : "bg-gradient-to-l from-[#f8fafc] to-transparent"
+          }`} />
+        </div>
+
+        {/* Count hint */}
+        <p className={`text-center text-xs mt-2 ${isDark ? "text-gray-700" : "text-gray-300"}`}>
+          ← scroll to see all {projectsData[activeTab].length} projects →
+        </p>
+      </div>
+    </section>
   );
 }
