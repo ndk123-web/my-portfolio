@@ -7,89 +7,61 @@ import {
   SiReact, SiNextdotjs, SiNodedotjs, SiJavascript, SiTypescript,
   SiPython, SiFlask, SiDjango, SiMongodb, SiPostgresql, SiMysql,
   SiPycharm, SiGithub, SiGit, SiVercel, SiRender, SiRailway,
-  SiFirebase, SiPostman, SiVite, SiRedis, SiGo,
+  SiFirebase, SiPostman, SiVite, SiRedis, SiGo, SiRust,
 } from "react-icons/si";
 import { SiC } from "react-icons/si";
-import { FaJava, FaTerminal } from "react-icons/fa";
-import { VscCode } from "react-icons/vsc";
+import { FaJava, FaTerminal, FaAws } from "react-icons/fa";
+import { VscCode, VscAzure } from "react-icons/vsc";
 import { TbBrandCpp } from "react-icons/tb";
 
-const skillCategories = [
-  {
-    category: "Languages",
-    color: "from-yellow-500 to-orange-500",
-    skills: [
-      { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
-      { name: "TypeScript", icon: SiTypescript, color: "text-blue-400" },
-      { name: "Python", icon: SiPython, color: "text-blue-400" },
-      { name: "Go", icon: SiGo, color: "text-cyan-400" },
-      { name: "Java", icon: FaJava, color: "text-red-400" },
-      { name: "C", icon: SiC, color: "text-blue-500" },
-      { name: "C++", icon: TbBrandCpp, color: "text-blue-500" },
-    ],
-  },
-  {
-    category: "Frameworks",
-    color: "from-cyan-500 to-blue-500",
-    skills: [
-      { name: "React", icon: SiReact, color: "text-cyan-400" },
-      { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
-      { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
-      { name: "Vite", icon: SiVite, color: "text-purple-400" },
-      { name: "Flask", icon: SiFlask, color: "text-gray-400" },
-      { name: "Django", icon: SiDjango, color: "text-green-600" },
-    ],
-  },
-  {
-    category: "Databases",
-    color: "from-green-500 to-emerald-500",
-    skills: [
-      { name: "PostgreSQL", icon: SiPostgresql, color: "text-blue-500" },
-      { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
-      { name: "MySQL", icon: SiMysql, color: "text-blue-400" },
-      { name: "Redis", icon: SiRedis, color: "text-red-400" },
-      { name: "Firebase", icon: SiFirebase, color: "text-yellow-400" },
-    ],
-  },
-  {
-    category: "Tools",
-    color: "from-purple-500 to-pink-500",
-    skills: [
-      { name: "VS Code", icon: VscCode, color: "text-blue-400" },
-      { name: "PyCharm", icon: SiPycharm, color: "text-green-400" },
-      { name: "Git", icon: SiGit, color: "text-orange-500" },
-      { name: "GitHub", icon: SiGithub, color: "text-white" },
-      { name: "Postman", icon: SiPostman, color: "text-orange-400" },
-    ],
-  },
-  {
-    category: "Deployment",
-    color: "from-indigo-500 to-violet-500",
-    skills: [
-      { name: "Vercel", icon: SiVercel, color: "text-white" },
-      { name: "Render", icon: SiRender, color: "text-green-400" },
-      { name: "Railway", icon: SiRailway, color: "text-purple-400" },
-      { name: "Firebase", icon: SiFirebase, color: "text-yellow-400" },
-    ],
-  },
-  {
-    category: "CLI Based Tools",
-    color: "from-teal-500 to-cyan-500",
-    skills: [
-      { name: "who-is-running", icon: SiGo, color: "text-cyan-400" },
-      { name: "Dev-Preview", icon: SiNodedotjs, color: "text-green-500" },
-    ],
-  },
+const row1 = [
+  { name: "TypeScript", icon: SiTypescript, color: "text-blue-400", cat: "Languages" },
+  { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400", cat: "Languages" },
+  { name: "Python", icon: SiPython, color: "text-blue-400", cat: "Languages" },
+  { name: "Go", icon: SiGo, color: "text-cyan-400", cat: "Languages" },
+  { name: "Rust", icon: SiRust, color: "text-orange-500", cat: "Languages" },
+  { name: "React", icon: SiReact, color: "text-cyan-400", cat: "Frameworks" },
+  { name: "Next.js", icon: SiNextdotjs, color: "text-white", cat: "Frameworks" },
+  { name: "Node.js", icon: SiNodedotjs, color: "text-green-500", cat: "Frameworks" },
+  { name: "Vite", icon: SiVite, color: "text-purple-400", cat: "Frameworks" },
+  { name: "Flask", icon: SiFlask, color: "text-gray-400", cat: "Frameworks" },
+  { name: "Django", icon: SiDjango, color: "text-green-600", cat: "Frameworks" },
+  { name: "Java", icon: FaJava, color: "text-red-400", cat: "Languages" },
+  { name: "C", icon: SiC, color: "text-blue-500", cat: "Languages" },
+  { name: "C++", icon: TbBrandCpp, color: "text-blue-500", cat: "Languages" },
+];
+
+const row2 = [
+  { name: "PostgreSQL", icon: SiPostgresql, color: "text-blue-500", cat: "Databases" },
+  { name: "MongoDB", icon: SiMongodb, color: "text-green-500", cat: "Databases" },
+  { name: "Redis", icon: SiRedis, color: "text-red-400", cat: "Databases" },
+  { name: "MySQL", icon: SiMysql, color: "text-blue-400", cat: "Databases" },
+  { name: "AWS", icon: FaAws, color: "text-amber-500", cat: "Deployment" },
+  { name: "Azure", icon: VscAzure, color: "text-blue-400", cat: "Deployment" },
+  { name: "Vercel", icon: SiVercel, color: "text-white", cat: "Deployment" },
+  { name: "Render", icon: SiRender, color: "text-green-400", cat: "Deployment" },
+  { name: "Railway", icon: SiRailway, color: "text-purple-400", cat: "Deployment" },
+  { name: "Firebase", icon: SiFirebase, color: "text-yellow-400", cat: "Deployment" },
+  { name: "Git", icon: SiGit, color: "text-orange-500", cat: "Tools" },
+  { name: "GitHub", icon: SiGithub, color: "text-white", cat: "Tools" },
+  { name: "who-is-running", icon: SiGo, color: "text-cyan-400", cat: "CLI Tools" },
+  { name: "Dev-Preview", icon: SiNodedotjs, color: "text-green-500", cat: "CLI Tools" },
+  { name: "VS Code", icon: VscCode, color: "text-blue-400", cat: "Tools" },
+  { name: "Postman", icon: SiPostman, color: "text-orange-400", cat: "Tools" },
 ];
 
 export default function Skills({ skillRef }) {
   const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark";
 
+  // Duplicate items 4x for continuous infinite loop without gaps
+  const marqueeRow1 = [...row1, ...row1, ...row1, ...row1];
+  const marqueeRow2 = [...row2, ...row2, ...row2, ...row2];
+
   return (
     <section
       ref={skillRef}
-      className={`relative pt-28 pb-20 overflow-hidden ${
+      className={`relative pt-28 pb-24 overflow-hidden ${
         isDark ? "bg-[#0a0a0f] text-white" : "bg-[#f8fafc] text-gray-900"
       }`}
     >
@@ -110,57 +82,72 @@ export default function Skills({ skillRef }) {
           <h2 className={`text-4xl lg:text-5xl font-extrabold ${isDark ? "text-white" : "text-gray-900"}`}>
             Skills & Technologies
           </h2>
+          <p className={`mt-3 text-sm max-w-lg mx-auto ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+            Technologies, frameworks, and tools I use to build production systems.
+          </p>
         </motion.div>
 
-        {/* Categories */}
-        <div className="space-y-10">
-          {skillCategories.map((cat, catIdx) => (
-            <motion.div
-              key={cat.category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: catIdx * 0.08 }}
-              viewport={{ once: true }}
-            >
-              {/* Category header */}
-              <div className="flex items-center gap-4 mb-4">
-                <div className={`h-px flex-1 ${isDark ? "bg-white/6" : "bg-black/6"}`} />
-                <div className="flex items-center gap-2">
-                  <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${cat.color}`} />
-                  <span className={`text-sm font-semibold ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                    {cat.category}
-                  </span>
-                </div>
-                <div className={`h-px flex-1 ${isDark ? "bg-white/6" : "bg-black/6"}`} />
-              </div>
+        {/* Unified Marquee Block */}
+        <div className="relative marquee-container space-y-4 py-2">
+          {/* Side fade masks */}
+          <div className={`absolute left-0 top-0 bottom-0 w-24 z-20 pointer-events-none ${
+            isDark
+              ? "bg-gradient-to-r from-[#0a0a0f] to-transparent"
+              : "bg-gradient-to-r from-[#f8fafc] to-transparent"
+          }`} />
+          <div className={`absolute right-0 top-0 bottom-0 w-24 z-20 pointer-events-none ${
+            isDark
+              ? "bg-gradient-to-l from-[#0a0a0f] to-transparent"
+              : "bg-gradient-to-l from-[#f8fafc] to-transparent"
+          }`} />
 
-              {/* Pill chips — horizontal scrollable */}
-              <div className="flex flex-wrap gap-2.5">
-                {cat.skills.map((skill, skillIdx) => {
-                  const Icon = skill.icon;
-                  return (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.85 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: catIdx * 0.05 + skillIdx * 0.04, duration: 0.3 }}
-                      viewport={{ once: true }}
-                      whileHover={{ y: -3, scale: 1.05 }}
-                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl border text-sm font-medium cursor-default transition-all duration-200 ${
+          {/* Row 1: Left Scroll */}
+          <div className="overflow-hidden py-1">
+            <div className="animate-marquee-left">
+              {marqueeRow1.map((skill, idx) => {
+                const Icon = skill.icon;
+                return (
+                  <div key={`r1-${skill.name}-${idx}`} className="mx-2 flex-shrink-0">
+                    <div
+                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all duration-200 ${
                         isDark
-                          ? "bg-white/3 border-white/8 text-gray-300 hover:bg-white/8 hover:border-white/16"
-                          : "bg-white border-black/8 text-gray-700 hover:shadow-md hover:border-black/16"
+                          ? "bg-white/4 border-white/8 text-gray-200 hover:bg-white/10 hover:border-white/20"
+                          : "bg-white border-black/8 text-gray-800 hover:shadow-lg hover:border-black/16"
                       }`}
                     >
                       <Icon className={`w-4 h-4 ${skill.color} flex-shrink-0`} />
                       <span>{skill.name}</span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
-          ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Row 2: Right Scroll */}
+          <div className="overflow-hidden py-1">
+            <div className="animate-marquee-right">
+              {marqueeRow2.map((skill, idx) => {
+                const Icon = skill.icon;
+                return (
+                  <div key={`r2-${skill.name}-${idx}`} className="mx-2 flex-shrink-0">
+                    <div
+                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all duration-200 ${
+                        isDark
+                          ? "bg-white/4 border-white/8 text-gray-200 hover:bg-white/10 hover:border-white/20"
+                          : "bg-white border-black/8 text-gray-800 hover:shadow-lg hover:border-black/16"
+                      }`}
+                    >
+                      <Icon className={`w-4 h-4 ${skill.color} flex-shrink-0`} />
+                      <span>{skill.name}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
+
       </div>
     </section>
   );

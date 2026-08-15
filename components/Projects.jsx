@@ -27,10 +27,11 @@ const techIcons = {
 const projectsData = {
   "Full Stack": [
     {
-      title: "flowframe", badge: "Currently Building",
+      title: "FlowFrame",
       description: "Interactive frame-based system design visualizer for simulating request flow across system components.",
       techStack: ["Next.js", "React", "Vercel", "Graph-Engine"],
       features: ["Interactive canvas for architecture visual planning", "Simulates live request flow paths", "High performance node graphs"],
+      github: "https://github.com/ndk123-web/flow-frame",
       live: "https://flowframe.taskplexus.app",
     },
     {

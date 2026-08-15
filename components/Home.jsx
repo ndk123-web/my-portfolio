@@ -40,7 +40,7 @@ export default function Home({ homeRef, projectsRef, contactRef }) {
   }, [displayed, deleting, roleIndex]);
 
   const stats = [
-    { value: "10+", label: "Projects" },
+    { value: "20+", label: "Projects" },
     { value: "1+", label: "Yrs Exp" },
     { value: "5+", label: "OSS Tools" },
   ];

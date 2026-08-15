@@ -10,12 +10,12 @@ const experiences = [
     role: "AI Automation Intern",
     company: "Autonova AI",
     type: "Internship",
-    duration: "May 2026 – Present · 2 mos",
+    duration: "May 2026 – 18 July 2026 · 3 mos",
     location: "India · Remote",
-    description: "Working on AI automation workflows, backend integrations, and scalable AI-powered systems while collaborating remotely with the development team.",
+    description: "Worked on AI automation workflows, backend integrations, and scalable AI-powered systems while collaborating remotely with the development team.",
     skills: ["AI Automation", "Backend Integration", "Scalable Systems", "Remote Collaboration"],
     color: "from-indigo-500 to-purple-500",
-    current: true,
+    current: false,
   },
 ];
 

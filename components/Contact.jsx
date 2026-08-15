@@ -108,7 +108,7 @@ export default function Contact({ contactRef }) {
             })}
 
             {/* Socials grid */}
-            <div className={`p-5 rounded-2xl border ${
+            <div className={`relative overflow-hidden p-5 rounded-2xl border ${
               isDark ? "glass-dark border-white/6" : "glass-light border-black/8"
             }`}>
               <div className="absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500" />

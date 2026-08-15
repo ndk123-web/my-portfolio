@@ -14,9 +14,9 @@ const highlights = [
 
 const stats = [
   { value: "1+", label: "Years Exp", icon: FaGraduationCap },
-  { value: "10+", label: "Projects", icon: FaRocket },
+  { value: "20+", label: "Projects", icon: FaRocket },
   { value: "5+", label: "OSS Tools", icon: FaCode },
-  { value: "2", label: "Internships", icon: FaUsers },
+  { value: "1", label: "Internship", icon: FaUsers },
 ];
 
 const cardVariants = {
@@ -80,8 +80,8 @@ export default function About({ aboutRef }) {
                 I enjoy working across the full stack and love writing clean, maintainable code.
               </p>
               <p>
-                Currently working as an <span className="gradient-text font-semibold">AI Automation Intern</span> at Autonova AI,
-                I'm exploring intelligent systems that solve real-world problems through automation and backend integrations.
+                Having worked as an <span className="gradient-text font-semibold">AI Automation Intern</span> at Autonova AI,
+                I explored intelligent systems that solve real-world problems through automation and backend integrations.
               </p>
               <p>
                 Beyond work, I build open-source tools like <span className={`font-semibold ${isDark ? "text-white" : "text-gray-900"}`}>who-is-running</span> (Go CLI)
@@ -94,7 +94,7 @@ export default function About({ aboutRef }) {
               whileTap={{ scale: 0.96 }}
               onClick={() => {
                 const link = document.createElement("a");
-                link.href = "/NAVNATH_KADAM_RESUME.pdf";
+                link.href = "/v5_resume.pdf";
                 link.target = "_blank";
                 document.body.appendChild(link);
                 link.click();

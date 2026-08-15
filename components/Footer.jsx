@@ -59,6 +59,16 @@ export default function Footer() {
             })}
           </div>
 
+          {/* Last Updated section */}
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs border ${
+            isDark
+              ? "bg-white/4 border-white/8 text-gray-400"
+              : "bg-black/4 border-black/8 text-gray-500"
+          }`}>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Last Updated: <strong className={isDark ? "text-gray-200" : "text-gray-800"}>15th August 2026</strong></span>
+          </div>
+
           {/* Copyright + back to top */}
           <div className="flex items-center gap-4">
             <span className={`text-xs ${isDark ? "text-gray-600" : "text-gray-400"}`}>
