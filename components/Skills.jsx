@@ -4,261 +4,150 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
 import {
-  SiReact,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiJavascript,
-  SiTypescript,
-  SiPython,
-  SiFlask,
-  SiDjango,
-  SiMongodb,
-  SiPostgresql,
-  SiMysql,
-  SiPycharm,
-  SiGithub,
-  SiGit,
-  SiVercel,
-  SiRender,
-  SiRailway,
-  SiFirebase,
-  SiPostman,
-  SiVite,
-  SiRedis,
-  SiGo
+  SiReact, SiNextdotjs, SiNodedotjs, SiJavascript, SiTypescript,
+  SiPython, SiFlask, SiDjango, SiMongodb, SiPostgresql, SiMysql,
+  SiPycharm, SiGithub, SiGit, SiVercel, SiRender, SiRailway,
+  SiFirebase, SiPostman, SiVite, SiRedis, SiGo, SiRust,
 } from "react-icons/si";
 import { SiC } from "react-icons/si";
-import { FaJava } from "react-icons/fa";
-import { VscCode } from "react-icons/vsc";
+import { FaJava, FaTerminal, FaAws } from "react-icons/fa";
+import { VscCode, VscAzure } from "react-icons/vsc";
 import { TbBrandCpp } from "react-icons/tb";
 
-const skillCategories = [
-  {
-    category: "Languages",
-    skills: [
-      { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500" },
-      { name: "TypeScript", icon: SiTypescript, color: "text-blue-500" },
-      { name: "Python", icon: SiPython, color: "text-blue-500" },
-      { name: "Java", icon: FaJava, color: "text-red-500" },
-      { name: "C", icon: SiC, color: "text-blue-500" },
-      { name: "C++", icon: TbBrandCpp, color: "text-blue-500" },
-      { name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
-      { name: "Go", icon: SiGo, color: "text-blue-500" },
-    ],
-  },
-  {
-    category: "Frameworks",
-    skills: [
-      { name: "React", icon: SiReact, color: "text-cyan-500" },
-      {
-        name: "Next.js",
-        icon: SiNextdotjs,
-        color: "dark:text-white text-black",
-      },
-      { name: "Vite", icon: SiVite, color: "text-purple-500" },
-      {
-        name: "Flask",
-        icon: SiFlask,
-        color: "dark:text-gray-300 text-gray-700",
-      },
-      { name: "Django", icon: SiDjango, color: "text-green-600" },
-    ],
-  },
-  {
-    category: "Databases",
-    skills: [
-      { name: "PostgreSQL", icon: SiPostgresql, color: "text-blue-600" },
-      { name: "MongoDB", icon: SiMongodb, color: "text-green-500" },
-      { name: "MySQL", icon: SiMysql, color: "text-blue-500" },
-      { name: "Redis", icon: SiRedis, color: "text-red-500" },
-      { name: "Firebase", icon: SiFirebase, color: "text-yellow-500" },
-    ],
-  },
-  {
-    category: "Tools",
-    skills: [
-      { name: "VS Code", icon: VscCode, color: "text-blue-500" },
-      { name: "PyCharm", icon: SiPycharm, color: "text-green-500" },
-      { name: "Git", icon: SiGit, color: "text-orange-500" },
-      { name: "GitHub", icon: SiGithub, color: "dark:text-white text-black" },
-    ],
-  },
-  {
-    category: "Deployment",
-    skills: [
-      { name: "Vercel", icon: SiVercel, color: "dark:text-white text-black" },
-      { name: "Render", icon: SiRender, color: "text-green-500" },
-      { name: "Railway", icon: SiRailway, color: "text-purple-500" },
-      { name: "Firebase", icon: SiFirebase, color: "text-yellow-500" },
-    ],
-  },
-  {
-    category: "Testing",
-    skills: [{ name: "Postman", icon: SiPostman, color: "text-orange-500" }],
-  },
+const row1 = [
+  { name: "TypeScript", icon: SiTypescript, color: "text-blue-400", cat: "Languages" },
+  { name: "JavaScript", icon: SiJavascript, color: "text-yellow-400", cat: "Languages" },
+  { name: "Python", icon: SiPython, color: "text-blue-400", cat: "Languages" },
+  { name: "Go", icon: SiGo, color: "text-cyan-400", cat: "Languages" },
+  { name: "Rust", icon: SiRust, color: "text-orange-500", cat: "Languages" },
+  { name: "React", icon: SiReact, color: "text-cyan-400", cat: "Frameworks" },
+  { name: "Next.js", icon: SiNextdotjs, color: "text-white", cat: "Frameworks" },
+  { name: "Node.js", icon: SiNodedotjs, color: "text-green-500", cat: "Frameworks" },
+  { name: "Vite", icon: SiVite, color: "text-purple-400", cat: "Frameworks" },
+  { name: "Flask", icon: SiFlask, color: "text-gray-400", cat: "Frameworks" },
+  { name: "Django", icon: SiDjango, color: "text-green-600", cat: "Frameworks" },
+  { name: "Java", icon: FaJava, color: "text-red-400", cat: "Languages" },
+  { name: "C", icon: SiC, color: "text-blue-500", cat: "Languages" },
+  { name: "C++", icon: TbBrandCpp, color: "text-blue-500", cat: "Languages" },
+];
+
+const row2 = [
+  { name: "PostgreSQL", icon: SiPostgresql, color: "text-blue-500", cat: "Databases" },
+  { name: "MongoDB", icon: SiMongodb, color: "text-green-500", cat: "Databases" },
+  { name: "Redis", icon: SiRedis, color: "text-red-400", cat: "Databases" },
+  { name: "MySQL", icon: SiMysql, color: "text-blue-400", cat: "Databases" },
+  { name: "AWS", icon: FaAws, color: "text-amber-500", cat: "Deployment" },
+  { name: "Azure", icon: VscAzure, color: "text-blue-400", cat: "Deployment" },
+  { name: "Vercel", icon: SiVercel, color: "text-white", cat: "Deployment" },
+  { name: "Render", icon: SiRender, color: "text-green-400", cat: "Deployment" },
+  { name: "Railway", icon: SiRailway, color: "text-purple-400", cat: "Deployment" },
+  { name: "Firebase", icon: SiFirebase, color: "text-yellow-400", cat: "Deployment" },
+  { name: "Git", icon: SiGit, color: "text-orange-500", cat: "Tools" },
+  { name: "GitHub", icon: SiGithub, color: "text-white", cat: "Tools" },
+  { name: "who-is-running", icon: SiGo, color: "text-cyan-400", cat: "CLI Tools" },
+  { name: "Dev-Preview", icon: SiNodedotjs, color: "text-green-500", cat: "CLI Tools" },
+  { name: "VS Code", icon: VscCode, color: "text-blue-400", cat: "Tools" },
+  { name: "Postman", icon: SiPostman, color: "text-orange-400", cat: "Tools" },
 ];
 
 export default function Skills({ skillRef }) {
   const { theme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
+
+  // Duplicate items 4x for continuous infinite loop without gaps
+  const marqueeRow1 = [...row1, ...row1, ...row1, ...row1];
+  const marqueeRow2 = [...row2, ...row2, ...row2, ...row2];
 
   return (
     <section
       ref={skillRef}
-      className={`min-h-screen pt-20 ${
-        theme === "dark" ? "bg-gray-900" : "bg-gray-50"
+      className={`relative pt-28 pb-24 overflow-hidden ${
+        isDark ? "bg-[#0a0a0f] text-white" : "bg-[#f8fafc] text-gray-900"
       }`}
     >
-      <div
-        className={`container mx-auto px-6 py-16 ${
-          theme === "dark" ? "border-gray-800" : "border-gray-200"
-        }`}
-      >
+      <div className={`absolute inset-0 pointer-events-none ${isDark ? "bg-grid-dark" : "bg-grid-light"}`} />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600/6 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
+
+        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          className="text-center mb-14"
         >
-          <h3
-            className={`text-3xl lg:text-4xl font-bold mb-4 ${
-              theme === "dark"
-                ? "bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
-                : "bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent"
-            }`}
-          >
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3 gradient-text">Expertise</p>
+          <h2 className={`text-4xl lg:text-5xl font-extrabold ${isDark ? "text-white" : "text-gray-900"}`}>
             Skills & Technologies
-          </h3>
-          <p
-            className={`text-lg max-w-2xl mx-auto ${
-              theme === "dark" ? "text-gray-300" : "text-gray-600"
-            }`}
-          >
-            Comprehensive expertise across modern development technologies
+          </h2>
+          <p className={`mt-3 text-sm max-w-lg mx-auto ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+            Technologies, frameworks, and tools I use to build production systems.
           </p>
         </motion.div>
 
-        <div className="space-y-12">
-          {skillCategories.map((categoryData, categoryIndex) => (
-            <motion.div
-              key={categoryData.category}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
-              className="space-y-6"
-            >
-              {/* Category Title */}
-              <div className="flex items-center gap-4">
-                <div
-                  className={`h-1 flex-1 rounded-full ${
-                    theme === "dark" ? "bg-gray-700" : "bg-gray-300"
-                  }`}
-                />
-                <h4
-                  className={`text-xl font-semibold px-4 ${
-                    theme === "dark" ? "text-gray-100" : "text-gray-800"
-                  }`}
-                >
-                  {categoryData.category}
-                </h4>
-                <div
-                  className={`h-1 flex-1 rounded-full ${
-                    theme === "dark" ? "bg-gray-700" : "bg-gray-300"
-                  }`}
-                />
-              </div>
+        {/* Unified Marquee Block */}
+        <div className="relative marquee-container space-y-4 py-2">
+          {/* Side fade masks */}
+          <div className={`absolute left-0 top-0 bottom-0 w-24 z-20 pointer-events-none ${
+            isDark
+              ? "bg-gradient-to-r from-[#0a0a0f] to-transparent"
+              : "bg-gradient-to-r from-[#f8fafc] to-transparent"
+          }`} />
+          <div className={`absolute right-0 top-0 bottom-0 w-24 z-20 pointer-events-none ${
+            isDark
+              ? "bg-gradient-to-l from-[#0a0a0f] to-transparent"
+              : "bg-gradient-to-l from-[#f8fafc] to-transparent"
+          }`} />
 
-              {/* Skills Grid */}
-              <div className="relative">
-                {/* Desktop View */}
-                <div className="hidden sm:grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-                  {categoryData.skills.map((skill, skillIndex) => {
-                    const IconComponent = skill.icon;
-                    return (
-                      <motion.div
-                        key={skill.name}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{
-                          delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                          duration: 0.4,
-                        }}
-                        whileHover={{
-                          scale: 1.05,
-                          y: -5,
-                          transition: { duration: 0.2 },
-                        }}
-                        className={`group relative p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
-                          theme === "dark"
-                            ? "bg-gray-800 border-gray-700 hover:border-gray-600 hover:bg-gray-700"
-                            : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-lg hover:bg-gray-50"
-                        }`}
-                      >
-                        <div className="flex flex-col items-center space-y-3">
-                          <div
-                            className={`text-3xl transition-transform duration-300 ${skill.color} group-hover:scale-110`}
-                          >
-                            {IconComponent && <IconComponent />}
-                          </div>
-                          <span
-                            className={`text-sm font-medium text-center leading-tight ${
-                              theme === "dark"
-                                ? "text-gray-200"
-                                : "text-gray-700"
-                            }`}
-                          >
-                            {skill.name}
-                          </span>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-
-                {/* Mobile View */}
-                <div className="sm:hidden">
-                  <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
-                    {categoryData.skills.map((skill, skillIndex) => {
-                      const IconComponent = skill.icon;
-                      return (
-                        <motion.div
-                          key={skill.name}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{
-                            delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                            duration: 0.4,
-                          }}
-                          className={`group relative p-4 rounded-xl border transition-all duration-300 cursor-pointer min-w-[120px] flex-shrink-0 snap-center ${
-                            theme === "dark"
-                              ? "bg-gray-800 border-gray-700 hover:bg-gray-700"
-                              : "bg-white border-gray-200 hover:bg-gray-50 hover:shadow-md"
-                          }`}
-                        >
-                          <div className="flex flex-col items-center space-y-3">
-                            <div
-                              className={`text-3xl transition-transform duration-300 ${skill.color} group-hover:scale-110`}
-                            >
-                              {IconComponent && <IconComponent />}
-                            </div>
-                            <span
-                              className={`text-sm font-medium text-center leading-tight ${
-                                theme === "dark"
-                                  ? "text-gray-200"
-                                  : "text-gray-700"
-                              }`}
-                            >
-                              {skill.name}
-                            </span>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
+          {/* Row 1: Left Scroll */}
+          <div className="overflow-hidden py-1">
+            <div className="animate-marquee-left">
+              {marqueeRow1.map((skill, idx) => {
+                const Icon = skill.icon;
+                return (
+                  <div key={`r1-${skill.name}-${idx}`} className="mx-2 flex-shrink-0">
+                    <div
+                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all duration-200 ${
+                        isDark
+                          ? "bg-white/4 border-white/8 text-gray-200 hover:bg-white/10 hover:border-white/20"
+                          : "bg-white border-black/8 text-gray-800 hover:shadow-lg hover:border-black/16"
+                      }`}
+                    >
+                      <Icon className={`w-4 h-4 ${skill.color} flex-shrink-0`} />
+                      <span>{skill.name}</span>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Row 2: Right Scroll */}
+          <div className="overflow-hidden py-1">
+            <div className="animate-marquee-right">
+              {marqueeRow2.map((skill, idx) => {
+                const Icon = skill.icon;
+                return (
+                  <div key={`r2-${skill.name}-${idx}`} className="mx-2 flex-shrink-0">
+                    <div
+                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all duration-200 ${
+                        isDark
+                          ? "bg-white/4 border-white/8 text-gray-200 hover:bg-white/10 hover:border-white/20"
+                          : "bg-white border-black/8 text-gray-800 hover:shadow-lg hover:border-black/16"
+                      }`}
+                    >
+                      <Icon className={`w-4 h-4 ${skill.color} flex-shrink-0`} />
+                      <span>{skill.name}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
+
       </div>
     </section>
   );

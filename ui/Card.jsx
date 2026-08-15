@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext.js";
-import { FaGithub, FaExternalLinkAlt, FaPlay } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaPlay, FaProjectDiagram, FaTerminal } from "react-icons/fa";
 import {
   SiReact,
   SiNextdotjs,
@@ -33,10 +33,10 @@ import {
   SiDart,
   SiKotlin,
   SiSwift,
-  SiReactnative,
   SiExpo,
   SiAndroid,
   SiApple,
+  SiGo,
 } from "react-icons/si";
 
 // Tech stack icon mapping
@@ -69,10 +69,14 @@ const techIcons = {
   Dart: SiDart,
   Kotlin: SiKotlin,
   Swift: SiSwift,
-  "React Native": SiReactnative,
+  "React Native": SiReact,
   Expo: SiExpo,
   Android: SiAndroid,
   iOS: SiApple,
+  Go: SiGo,
+  "Go (Golang)": SiGo,
+  CLI: FaTerminal,
+  "Graph-Engine": FaProjectDiagram,
 };
 
 // Tech stack colors
@@ -109,6 +113,10 @@ const techColors = {
   Expo: "text-gray-900 dark:text-white",
   Android: "text-green-600",
   iOS: "text-gray-600",
+  Go: "text-cyan-500",
+  "Go (Golang)": "text-cyan-500",
+  CLI: "text-green-500",
+  "Graph-Engine": "text-purple-500",
 };
 
 export default function ProjectCard({
